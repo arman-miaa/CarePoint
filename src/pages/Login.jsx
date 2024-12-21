@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../hooks/AuthProvider";
 
 const Login = () => {
-  const { signInUser, sigInWithGoogle, setUsers } = useContext(AuthContext);
+  const { signInUser, sigInWithGoogle, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
      const location = useLocation();
      const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
-        setUsers(result.user);
+        setUser(result.user);
         toast.success("Logged in successfully!");
         form.reset();
         setError("");

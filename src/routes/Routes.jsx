@@ -3,6 +3,9 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Private from "../Private/Private";
+import AllvolunteerNeedposts from "../pages/AllvolunteerNeedposts";
+import ManageMyPosts from "../pages/ManageMyPosts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,15 +15,28 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        },
-        {
-            path: 'login',
-            element:<Login></Login>
-        },
-        {
-            path: 'signUp',
-            element:<SignUp></SignUp>,
-        }
+      },
+      {
+        path: "AllvolunteerNeedposts",
+        element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
+      },
+      {
+        path: "ManageMyPosts",
+        element: (
+          <Private>
+            <ManageMyPosts></ManageMyPosts>
+          </Private>
+        ),
+        // element:<MyProfile></MyProfile>
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "signUp",
+        element: <SignUp></SignUp>,
+      },
     ],
   },
 ]);

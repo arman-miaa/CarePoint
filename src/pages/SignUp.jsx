@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../hooks/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, setUsers, updateUserProfile } = useContext(AuthContext);
+  const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const SignUp = () => {
        
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
-            setUsers({ ...result.user, displayName: name, photoURL: photo });
+            setUser({ ...result.user, displayName: name, photoURL: photo });
             toast.success("Account created successfully!");
             navigate("/"); 
           })
