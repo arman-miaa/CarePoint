@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+// import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { AuthContext } from "../hooks/AuthProvider";
 
 const SignUp = () => {
   const { createUser, setUsers, updateUserProfile } = useContext(AuthContext);
