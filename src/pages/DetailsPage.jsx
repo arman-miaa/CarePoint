@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const DetailsPage = () => {
     const details = useLoaderData();
-    console.log(details);
+    // console.log(details);
     const {
+        _id,
       thumbnail,
       title,
       description,
@@ -18,7 +19,9 @@ const DetailsPage = () => {
     return (
       <div className="bg-base-100 shadow-xl mt-8">
         <div className="text-center">
-          <h3 className="font-bold text-xl md:text-2xl lg:text-3xl">Volunteer Opportunity Details</h3>
+          <h3 className="font-bold text-xl md:text-2xl lg:text-3xl">
+            Volunteer Opportunity Details
+          </h3>
           <p className="w-1/2 mx-auto">
             Learn more about this opportunity and take the first step to
             becoming a volunteer.
@@ -41,7 +44,11 @@ const DetailsPage = () => {
             <p>OrganizerName: {organizerName}</p>
             <p>OrganizerEmail: {organizerEmail}</p>
             <div className="w-full border-2">
-              <button className="btn btn-primary w-full">Be a Voluntee</button>
+              <Link to={`/beAVolunteer/${_id}`}>
+                <button className="btn btn-primary w-full">
+                  Be a Voluntee
+                </button>
+              </Link>
             </div>
           </div>
         </div>

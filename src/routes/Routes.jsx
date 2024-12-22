@@ -8,6 +8,7 @@ import AllvolunteerNeedposts from "../pages/AllvolunteerNeedposts";
 import ManageMyPosts from "../pages/ManageMyPosts";
 import AddVolunteerNeedPostPage from "../pages/AddVolunteerNeedPostPage";
 import DetailsPage from "../pages/DetailsPage";
+import BeAVolunteer from "../pages/BeAVolunteer";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       {
         path: "AllvolunteerNeedposts",
         element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
+        loader: () => fetch("http://localhost:5000/allPost"),
       },
       {
         path: "AddVolunteerNeedPostPage",
@@ -37,8 +39,21 @@ const router = createBrowserRouter([
             <DetailsPage></DetailsPage>
           </Private>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
+
+      {
+        path: "beAVolunteer/:id",
+        element: (
+          <Private>
+            <BeAVolunteer></BeAVolunteer>
+          </Private>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
+      },
+
       {
         path: "ManageMyPosts",
         element: (

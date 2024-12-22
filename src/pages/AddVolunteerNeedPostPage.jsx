@@ -23,7 +23,7 @@ const AddVolunteerNeedPostPage = () => {
     const description = form.description.value;
     const category = form.category.value;
     const location = form.location.value;
-    const volunteers = form.volunteers.value;
+    const volunteers = Number(form.volunteers.value);
     const postDeadline = deadline;
     const organizerName = form.userName.value;
     const organizerEmail = form.userEmail.value;
@@ -41,7 +41,7 @@ const AddVolunteerNeedPostPage = () => {
       organizerName,
       organizerEmail,
     };
-    // console.log(postData);
+    console.log(postData);
     axios
       .post("http://localhost:5000/volunteerPosts", postData)
       .then((res) => {
