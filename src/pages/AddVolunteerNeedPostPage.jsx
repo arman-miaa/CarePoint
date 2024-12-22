@@ -7,59 +7,64 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddVolunteerNeedPostPage = () => {
+  const { user } = useContext(AuthContext);
+  // console.log(user);
 
-    const { user } = useContext(AuthContext)
-    // console.log(user);
-
-    const [deadline, setDeadline] = useState(new Date());
+  const [deadline, setDeadline] = useState(new Date());
   const handleDateChange = (date) => {
     setDeadline(date);
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const thumbnail = form.thumbnail.value;
+    const title = form.title.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const location = form.location.value;
+    const volunteers = form.volunteers.value;
+    const postDeadline = deadline;
+    const organizerName = form.userName.value;
+    const organizerEmail = form.userEmail.value;
+
+    // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
+
+    const postData = {
+      thumbnail,
+      title,
+      description,
+      category,
+      location,
+      volunteers,
+      postDeadline,
+      organizerName,
+      organizerEmail,
     };
-    
-
-    const handleSubmitForm = e => {
-        e.preventDefault();
-        const form = e.target;
-        const thumbnail = form.thumbnail.value;
-        const title = form.title.value;
-        const description = form.description.value;
-        const category = form.category.value;
-        const location = form.location.value;
-        const volunteers = form.volunteers.value;
-        const postDeadline = deadline;
-        const organizerName = form.userName.value;
-        const organizerEmail = form.userEmail.value;
-
-        // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
-        
-        const postData = { thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail }
-        // console.log(postData);
-        axios.post("http://localhost:5000/volunteerPosts", postData)
-            .then(res => {
-                // console.log(res.data)
-            toast.success('Added on database successfully!')
-            })
-            .catch(error => {
-            console.log('ERROR',error);
-        })
-    }
-
-
-
+    // console.log(postData);
+    axios
+      .post("http://localhost:5000/volunteerPosts", postData)
+      .then((res) => {
+        // console.log(res.data)
+        toast.success("Added on database successfully!");
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  };
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
       <h1 className="text-2xl font-bold text-center mb-6">
         Add Volunteer Need Post
       </h1>
-      <form onSubmit={handleSubmitForm}  className="space-y-4">
+      <form onSubmit={handleSubmitForm} className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Thumbnail</label>
           <input
             type="url"
             name="thumbnail"
             placeholder="Enter image URL"
-           
             className="input input-bordered w-full"
             required
           />
@@ -70,7 +75,6 @@ const AddVolunteerNeedPostPage = () => {
             type="text"
             name="title"
             placeholder="Enter post title"
-           
             className="input input-bordered w-full"
             required
           />
@@ -80,7 +84,6 @@ const AddVolunteerNeedPostPage = () => {
           <textarea
             name="description"
             placeholder="Enter description"
-           
             className="textarea textarea-bordered w-full resize-none"
             required
           ></textarea>
@@ -89,7 +92,6 @@ const AddVolunteerNeedPostPage = () => {
           <label className="block text-sm font-medium mb-1">Category</label>
           <select
             name="category"
-         
             className="select select-bordered w-full"
             required
           >
@@ -108,7 +110,6 @@ const AddVolunteerNeedPostPage = () => {
             type="text"
             name="location"
             placeholder="Enter location"
-           
             className="input input-bordered w-full"
             required
           />
@@ -121,7 +122,6 @@ const AddVolunteerNeedPostPage = () => {
             type="number"
             name="volunteers"
             placeholder="Enter number"
-          
             className="input input-bordered w-full"
             required
           />
@@ -129,8 +129,8 @@ const AddVolunteerNeedPostPage = () => {
         <div>
           <label className="block text-sm font-medium mb-1">Deadline</label>
           <DatePicker
-          selected={deadline}
-                      onChange={handleDateChange}
+            selected={deadline}
+            onChange={handleDateChange}
             className="input input-bordered w-full"
             dateFormat="yyyy-MM-dd"
             required
@@ -141,8 +141,8 @@ const AddVolunteerNeedPostPage = () => {
             Organizer Name
           </label>
           <input
-                      type="text"
-                      name="userName"
+            type="text"
+            name="userName"
             value={user?.displayName}
             readOnly
             className="input input-bordered w-full bg-gray-200"
@@ -153,8 +153,8 @@ const AddVolunteerNeedPostPage = () => {
             Organizer Email
           </label>
           <input
-                      type="email"
-                      name="userEmail"
+            type="email"
+            name="userEmail"
             value={user?.email}
             readOnly
             className="input input-bordered w-full bg-gray-200"
