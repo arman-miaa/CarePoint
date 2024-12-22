@@ -40,12 +40,12 @@ const Banner = () => {
                 src={banner1}
                 alt=""
               />
-                      </div>
-                      <div className="absolute top-0 left-0">
-                          <h1>Volunteer....</h1>
-                          <p>Lorem ipsum dolor sit.</p>
-                          <button>See More!</button>
-                      </div>
+            </div>
+            <div className="absolute top-0 left-0">
+              <h1>Volunteer....</h1>
+              <p>Lorem ipsum dolor sit.</p>
+              <button>See More!</button>
+            </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -56,12 +56,13 @@ const Banner = () => {
                 src={banner2}
                 alt=""
               />
-                      </div>
-                      <div className="absolute top-0 left-0">
-                          <h1>Volunteer....</h1>
-                          <p>Lorem ipsum dolor sit.</p>
-                          <button>See More!</button>
-                      </div>
+            </div>
+            <div className="absolute top-0 left-0">
+              <h1>Volunteer....</h1>
+              <p>Lorem ipsum dolor sit.</p>
+              <button>See More!</button>
+            </div>
+            
           </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -72,15 +73,14 @@ const Banner = () => {
                 src={banner3}
                 alt=""
               />
-                      </div>
-                      <div className="absolute top-0 left-0">
-                          <h1>Volunteer....</h1>
-                          <p>Lorem ipsum dolor sit.</p>
-                          <button>See More!</button>
-                      </div>
+            </div>
+            <div className="absolute top-0 left-0">
+              <h1>Volunteer....</h1>
+              <p>Lorem ipsum dolor sit.</p>
+              <button>See More!</button>
+            </div>
           </div>
         </SwiperSlide>
-       
       </Swiper>
     </div>
   );

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  // console.log(user);
   const [dropdown, setDropdown] = useState(false);
   // console.log(user);
 
@@ -25,11 +26,14 @@ const Navbar = () => {
       <li>
         <NavLink to="/AllvolunteerNeedposts">All volunteer Need posts</NavLink>
       </li>
+      <li>
+        <NavLink to="/AddVolunteerNeedPostPage">
+          Add volunteer Need posts
+        </NavLink>
+      </li>
 
       <li>
-        <NavLink onClick={handleDropdown}>
-          My Profile
-        </NavLink>
+        <NavLink onClick={handleDropdown}>My Profile</NavLink>
       </li>
     </>
   );
