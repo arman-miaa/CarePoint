@@ -56,7 +56,7 @@ const AddVolunteerNeedPostPage = () => {
         <div>
           <label className="block text-sm font-medium mb-1">Thumbnail</label>
           <input
-            type="text"
+            type="url"
             name="thumbnail"
             placeholder="Enter image URL"
            
