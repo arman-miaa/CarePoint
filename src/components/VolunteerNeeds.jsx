@@ -7,7 +7,7 @@ const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(volunteerPosts);
+//   console.log(volunteerPosts);
 
   useEffect(() => {
     axios
