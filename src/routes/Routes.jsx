@@ -7,6 +7,7 @@ import Private from "../Private/Private";
 import AllvolunteerNeedposts from "../pages/AllvolunteerNeedposts";
 import ManageMyPosts from "../pages/ManageMyPosts";
 import AddVolunteerNeedPostPage from "../pages/AddVolunteerNeedPostPage";
+import DetailsPage from "../pages/DetailsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +24,20 @@ const router = createBrowserRouter([
       },
       {
         path: "AddVolunteerNeedPostPage",
-        element:<Private><AddVolunteerNeedPostPage></AddVolunteerNeedPostPage></Private>
+        element: (
+          <Private>
+            <AddVolunteerNeedPostPage></AddVolunteerNeedPostPage>
+          </Private>
+        ),
+      },
+      {
+        path: "detailsPage/:id",
+        element: (
+          <Private>
+            <DetailsPage></DetailsPage>
+          </Private>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
       {
         path: "ManageMyPosts",

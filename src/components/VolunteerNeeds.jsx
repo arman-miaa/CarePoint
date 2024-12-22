@@ -1,13 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../pages/Loading";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../hooks/AuthProvider";
 
 const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-//   console.log(volunteerPosts);
+  console.log(volunteerPosts);
 
   useEffect(() => {
     axios
@@ -66,9 +67,11 @@ const VolunteerNeeds = () => {
                     </p>
 
                     <div className="w-full">
-                      <button className="btn btn-primary w-full">
-                        View Details
-                      </button>
+                      <Link to={`/detailsPage/${volunteerPost._id}`}>
+                        <button className="btn btn-primary w-full">
+                          View Details
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
