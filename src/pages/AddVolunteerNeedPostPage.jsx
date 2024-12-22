@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // import { toast } from "react-toastify";
 import { AuthContext } from "../hooks/AuthProvider";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddVolunteerNeedPostPage = () => {
 
@@ -31,7 +33,15 @@ const AddVolunteerNeedPostPage = () => {
         // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
         
         const postData = { thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail }
-        console.log(postData);
+        // console.log(postData);
+        axios.post("http://localhost:5000/volunteerPosts", postData)
+            .then(res => {
+                // console.log(res.data)
+            toast.success('Added on database successfully!')
+            })
+            .catch(error => {
+            console.log('ERROR',error);
+        })
     }
 
 
@@ -71,7 +81,7 @@ const AddVolunteerNeedPostPage = () => {
             name="description"
             placeholder="Enter description"
            
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full resize-none"
             required
           ></textarea>
         </div>
