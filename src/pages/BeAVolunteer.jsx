@@ -22,54 +22,54 @@ const BeAVolunteer = () => {
     postDeadline,
     organizerName,
     organizerEmail,
-    } = details;
-    
-    const handleSubmitForm = (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const thumbnail = form.thumbnail.value;
-      const title = form.title.value;
-      const description = form.description.value;
-      const category = form.category.value;
-      const location = form.location.value;
-          const volunteers = Number(form.volunteers.value);
+  } = details;
 
-        const postDeadline = form.postDeadline.value;
-      const organizerName = form.userName.value;
-        const organizerEmail = form.userEmail.value;
-        const volunteerName = form.volunteerName.value;
-        const volunteerEmail = form.volunteerEmail.value;
-        const suggestion = form.suggestion.value;
-        const status = form.status.vaule;
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const thumbnail = form.thumbnail.value;
+    const title = form.title.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const location = form.location.value;
+    const volunteers = Number(form.volunteers.value);
 
-      // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
+    const postDeadline = form.postDeadline.value;
+    const organizerName = form.userName.value;
+    const organizerEmail = form.userEmail.value;
+    const volunteerName = form.volunteerName.value;
+    const volunteerEmail = form.volunteerEmail.value;
+    const suggestion = form.suggestion.value;
+    const status = form.status.vaule;
 
-      const postData = {
-        thumbnail,
-        title,
-        description,
-        category,
-        location,
-        volunteers,
-        postDeadline,
-        organizerName,
-        organizerEmail,
-        volunteerName,
-          volunteerEmail,
-          suggestion,
-          status,
-        postId: details._id,
-      };
-      console.log(postData);
-      axios
-        .post("http://localhost:5000/volunteerRequests", postData)
-        .then((res) => {
-          toast.success("Added on database successfully!");
-        })
-        .catch((error) => {
-          console.log("ERROR", error);
-        });
+    // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
+
+    const postData = {
+      thumbnail,
+      title,
+      description,
+      category,
+      location,
+      volunteers,
+      postDeadline,
+      organizerName,
+      organizerEmail,
+      volunteerName,
+      volunteerEmail,
+      suggestion,
+      status,
+      postId: details._id,
     };
+    console.log(postData);
+    axios
+      .post("http://localhost:5000/volunteerRequests", postData)
+      .then((res) => {
+        toast.success("Added on database successfully!");
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  };
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
@@ -112,14 +112,12 @@ const BeAVolunteer = () => {
         <div>
           <label className="block text-sm font-medium mb-1">Category</label>
           <input
-                      name="category"
-                      defaultValue={category}
+            name="category"
+            defaultValue={category}
             className="select select-bordered w-full"
             required
             readOnly
-          >
-           
-          </input>
+          ></input>
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Location</label>
@@ -152,8 +150,8 @@ const BeAVolunteer = () => {
           <DatePicker
             className="input input-bordered w-full"
             dateFormat="yyyy-MM-dd"
-                      required
-                      name="postDeadline"
+            required
+            name="postDeadline"
             selected={new Date(postDeadline)}
             readOnly
           />
