@@ -2,9 +2,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
-import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loading from "../pages/Loading";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const MyVolunteerNeedPosts = () => {
@@ -25,7 +25,7 @@ const MyVolunteerNeedPosts = () => {
         console.log("ERROR", error);
         setLoading(false);
       });
-  }, [user.email,mypost]);
+  }, [user.email]);
     
     const handleDelete = (id) => {
         Swal.fire({
@@ -48,6 +48,9 @@ const MyVolunteerNeedPosts = () => {
                             text: "Your file has been deleted.",
                             icon: "success",
                           });
+                             setMypost((prevPosts) =>
+                               prevPosts.filter((post) => post._id !== id)
+                             );
                         }
                     })
                     .catch(error => {

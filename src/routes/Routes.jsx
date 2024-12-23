@@ -10,8 +10,7 @@ import AddVolunteerNeedPostPage from "../pages/AddVolunteerNeedPostPage";
 import DetailsPage from "../pages/DetailsPage";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import ErrorPage from "../pages/ErrorPage";
-import MyVolunteerNeedPosts from "../pages/MyVolunteerNeedPosts";
-import MyVolunteerRequestPost from "../pages/MyVolunteerRequestPost";
+
 import UpdatePage from "../pages/UpdatePage";
 const router = createBrowserRouter([
   {
@@ -65,32 +64,7 @@ const router = createBrowserRouter([
             <ManageMyPosts></ManageMyPosts>
           </Private>
         ),
-        children: [
-          {
-            index: true,
-            element: (
-              <Private>
-                <MyVolunteerNeedPosts />
-              </Private>
-            ),
-          },
-          {
-            path: "myVolunteerNeedPosts",
-            element: (
-              <Private>
-                <MyVolunteerNeedPosts />
-              </Private>
-            ),
-          },
-          {
-            path: "myVolunteerRequestPost",
-            element: (
-              <Private>
-                <MyVolunteerRequestPost />
-              </Private>
-            ),
-          },
-        ],
+      
       },
 
       {
