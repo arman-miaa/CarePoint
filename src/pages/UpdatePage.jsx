@@ -65,7 +65,9 @@ const BeAVolunteer = () => {
         console.error("Error updating post:", error);
         toast.error("Failed to update the post.");
       });
-  };
+    };
+    
+   
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">

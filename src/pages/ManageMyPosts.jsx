@@ -3,6 +3,8 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 const ManageMyPosts = () => {
   const location = useLocation();
 
+  
+
   return (
     <div>
       <div>

@@ -4,6 +4,7 @@ import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const MyVolunteerNeedPosts = () => {
@@ -24,7 +25,40 @@ const MyVolunteerNeedPosts = () => {
         console.log("ERROR", error);
         setLoading(false);
       });
-  }, [user.email]);
+  }, [user.email,mypost]);
+    
+    const handleDelete = (id) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+               console.log("clicked delete", id);
+                axios.delete(`http://localhost:5000/deletePost/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                          Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                          });
+                        }
+                    })
+                    .catch(error => {
+                    console.log(error);
+                })
+          
+          }
+        });
+         
+        
+     };
 
   return (
     <div>
@@ -68,7 +102,7 @@ const MyVolunteerNeedPosts = () => {
                         <Link to={`/updatePost/${post._id}`}>
                           <button className="btn ">Update</button>
                         </Link>
-                        <button className="btn ">Delete</button>
+                        <button onClick={()=>handleDelete(post._id)} className="btn ">Delete</button>
                       </td>
                     </tr>
                   ))}
