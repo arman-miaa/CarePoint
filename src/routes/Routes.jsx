@@ -12,6 +12,7 @@ import BeAVolunteer from "../pages/BeAVolunteer";
 import ErrorPage from "../pages/ErrorPage";
 import MyVolunteerNeedPosts from "../pages/MyVolunteerNeedPosts";
 import MyVolunteerRequestPost from "../pages/MyVolunteerRequestPost";
+import UpdatePage from "../pages/UpdatePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            index:true,
+            index: true,
             element: (
               <Private>
                 <MyVolunteerNeedPosts />
@@ -90,6 +91,17 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+
+      {
+        path: "updatePost/:id",
+        element: (
+          <Private>
+            <UpdatePage></UpdatePage>
+          </Private>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
 
       {

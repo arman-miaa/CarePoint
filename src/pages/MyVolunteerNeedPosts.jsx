@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const MyVolunteerNeedPosts = () => {
@@ -64,7 +65,9 @@ const MyVolunteerNeedPosts = () => {
                       <td>{post.title}</td>
                       <td>{post.location}</td>
                       <td className="flex gap-2 flex-col md:flex-row">
-                        <button className="btn ">Update</button>
+                        <Link to={`/updatePost/${post._id}`}>
+                          <button className="btn ">Update</button>
+                        </Link>
                         <button className="btn ">Delete</button>
                       </td>
                     </tr>
