@@ -51,7 +51,7 @@ const Login = () => {
       style={{ backgroundColor: "#1D1D1D" }}
     >
       <Helmet>
-        <title>Login Page || GameScope</title>
+        <title>Login Page || CarePoint</title>
       </Helmet>
       <div className="w-full max-w-md">
         {/* Header Section */}

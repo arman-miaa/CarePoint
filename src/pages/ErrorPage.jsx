@@ -5,7 +5,7 @@ const ErrorPage = () => {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
         <Helmet>
-          <title>ERROR Page || GameScope</title>
+          <title>ERROR Page || CarePoint</title>
         </Helmet>
         <h1 className="text-gray-400 md:text-3xl font-bold">
           Sorry! Page Not Found

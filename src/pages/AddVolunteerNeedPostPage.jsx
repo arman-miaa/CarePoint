@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const AddVolunteerNeedPostPage = () => {
   const { user } = useContext(AuthContext);
@@ -55,6 +56,9 @@ const AddVolunteerNeedPostPage = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
+      <Helmet>
+        <title>Add Volunteer Need Post Page || CarePoint</title>
+      </Helmet>
       <h1 className="text-2xl font-bold text-center mb-6">
         Add Volunteer Need Post
       </h1>

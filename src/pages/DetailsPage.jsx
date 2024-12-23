@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const DetailsPage = () => {
@@ -18,6 +19,9 @@ const DetailsPage = () => {
 
     return (
       <div className="bg-base-100 shadow-xl mt-8">
+        <Helmet>
+          <title>Details Page || CarePoint</title>
+        </Helmet>
         <div className="text-center">
           <h3 className="font-bold text-xl md:text-2xl lg:text-3xl">
             Volunteer Opportunity Details

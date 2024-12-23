@@ -71,7 +71,7 @@ const SignUp = () => {
   return (
     <div className="hero min-h-screen" style={{ backgroundColor: "#1D1D1D" }}>
       <Helmet>
-        <title>SignUp Page || GameScope</title>
+        <title>SignUp Page || CarePoint</title>
       </Helmet>
       <div className="hero-content flex-col">
         <div className="text-center">

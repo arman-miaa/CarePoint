@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
@@ -71,6 +72,9 @@ const BeAVolunteer = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
+      <Helmet>
+        <title>Update Page || CarePoint</title>
+      </Helmet>
       <h1 className="text-2xl font-bold text-center mb-6">
         Update Volunteer Need Post
       </h1>
@@ -154,7 +158,7 @@ const BeAVolunteer = () => {
             className="input input-bordered w-full"
             dateFormat="yyyy-MM-dd"
             selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)} 
+            onChange={(date) => setSelectedDate(date)}
             placeholderText="Select deadline"
             required
           />
