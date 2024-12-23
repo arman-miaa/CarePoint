@@ -1,22 +1,33 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../hooks/AuthProvider";
 import { toast } from "react-toastify";
+import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
+import { useTheme } from "../hooks/ThemeProvider ";
+// import { useTheme } from "../hooks/ThemeProvider";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  // console.log(user);
   const [dropdown, setDropdown] = useState(false);
-  // console.log(user);
+  const { darkMode, toggleTheme } = useTheme(); // get darkMode and toggleTheme
 
   const handleDropdown = () => {
     setDropdown((prev) => !prev);
-    // console.log("hi");
   };
+
   const handleLogOut = () => {
     logOutUser();
     toast.success("Logged out successfully");
   };
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("bg-gray-800");
+      document.body.classList.remove("bg-base-100");
+    } else {
+      document.body.classList.add("bg-base-100");
+      document.body.classList.remove("bg-gray-800");
+    }
+  }, [darkMode]);
 
   const links = (
     <>
@@ -31,14 +42,18 @@ const Navbar = () => {
           Add volunteer Need posts
         </NavLink>
       </li>
-
       <li>
         <NavLink onClick={handleDropdown}>My Profile</NavLink>
       </li>
     </>
   );
+
   return (
-    <div className="container mx-auto sticky top-0 left-0 z-50 navbar bg-base-100">
+    <div
+      className={`container mx-auto sticky top-0 left-0 z-50 navbar ${
+        darkMode ? "bg-gray-800 text-white" : "bg-base-100"
+      }`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -78,10 +93,25 @@ const Navbar = () => {
             </button>
           </Link>
           <Link to="/ManageMyPosts">
-            <button onClick={handleDropdown} className="btn btn-primary">Manage My Posts </button>
+            <button onClick={handleDropdown} className="btn btn-primary">
+              Manage My Posts{" "}
+            </button>
           </Link>
         </div>
       )}
+
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme} // Call toggleTheme when clicked
+        className="mr-6 px-2 capitalize flex justify-center items-center gap-0 md:gap-2"
+        aria-label="Toggle Theme"
+      >
+        {darkMode ? (
+          <SunIcon className="h-6 w-6 md:h-8 md:w-8 text-yellow-500" />
+        ) : (
+          <MoonIcon className="h-6 w-6 md:h-8 md:w-8" />
+        )}
+      </button>
 
       {user?.email ? (
         <div className="navbar-end">

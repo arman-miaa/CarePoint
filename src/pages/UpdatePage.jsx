@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../hooks/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
   const updatePost = useLoaderData();
+  const navigate = useNavigate();
 
   const {
     _id,
@@ -39,7 +40,6 @@ const BeAVolunteer = () => {
     const location = form.location.value;
     const volunteers = Number(form.volunteers.value);
 
-   
     const formattedDate = selectedDate
       ? selectedDate.toISOString().split("T")[0]
       : null;
@@ -57,18 +57,20 @@ const BeAVolunteer = () => {
     };
 
     axios
-      .patch(`http://localhost:5000/updatePost/${_id}`, updateData)
+      .patch(
+        `https://ph-assignment-11-server-brown.vercel.app/updatePost/${_id}`,
+        updateData
+      )
       .then((res) => {
         console.log(res.data);
         toast.success("Post updated successfully!");
+        navigate("/ManageMyPosts");
       })
       .catch((error) => {
         console.error("Error updating post:", error);
         toast.error("Failed to update the post.");
       });
-    };
-    
-   
+  };
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">

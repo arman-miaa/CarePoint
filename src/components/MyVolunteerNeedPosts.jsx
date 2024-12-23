@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
@@ -11,12 +10,13 @@ const MyVolunteerNeedPosts = () => {
   const { user } = useContext(AuthContext);
   const [mypost, setMypost] = useState([]);
   const [loading, setLoading] = useState(true);
- 
 
-    // console.log(mypost);
+  // console.log(mypost);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myPost/${user.email}`)
+      .get(
+        `https://ph-assignment-11-server-brown.vercel.app/myPost/${user.email}`
+      )
       .then((res) => {
         setMypost(res.data);
         setLoading(false);
@@ -26,42 +26,42 @@ const MyVolunteerNeedPosts = () => {
         setLoading(false);
       });
   }, [user.email]);
-    
-    const handleDelete = (id) => {
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-               console.log("clicked delete", id);
-                axios.delete(`http://localhost:5000/deletePost/${id}`)
-                    .then(res => {
-                        console.log(res.data);
-                        if (res.data.deletedCount > 0) {
-                          Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success",
-                          });
-                             setMypost((prevPosts) =>
-                               prevPosts.filter((post) => post._id !== id)
-                             );
-                        }
-                    })
-                    .catch(error => {
-                    console.log(error);
-                })
-          
-          }
-        });
-         
-        
-     };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("clicked delete", id);
+        axios
+          .delete(
+            `https://ph-assignment-11-server-brown.vercel.app/deletePost/${id}`
+          )
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              setMypost((prevPosts) =>
+                prevPosts.filter((post) => post._id !== id)
+              );
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -105,7 +105,12 @@ const MyVolunteerNeedPosts = () => {
                         <Link to={`/updatePost/${post._id}`}>
                           <button className="btn ">Update</button>
                         </Link>
-                        <button onClick={()=>handleDelete(post._id)} className="btn ">Delete</button>
+                        <button
+                          onClick={() => handleDelete(post._id)}
+                          className="btn "
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

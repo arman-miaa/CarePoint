@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../hooks/AuthProvider";
 import DatePicker from "react-datepicker";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const details = useLoaderData();
   console.log(details._id);
@@ -63,9 +64,13 @@ const BeAVolunteer = () => {
     };
     console.log(postData);
     axios
-      .post("http://localhost:5000/volunteerRequests", postData)
+      .post(
+        "https://ph-assignment-11-server-brown.vercel.app/volunteerRequests",
+        postData
+      )
       .then((res) => {
         toast.success("Added on database successfully!");
+        navigate("/AllvolunteerNeedposts");
       })
       .catch((error) => {
         console.log("ERROR", error);

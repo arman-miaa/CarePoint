@@ -20,7 +20,9 @@ const AllvolunteerNeedposts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/allPost?search=${search}`)
+      .get(
+        `https://ph-assignment-11-server-brown.vercel.app/allPost?search=${search}`
+      )
       .then((res) => {
         setVolunteerPosts(res.data);
       })
