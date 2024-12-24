@@ -64,10 +64,7 @@ const BeAVolunteer = () => {
     };
     console.log(postData);
     axios
-      .post(
-        "https://ph-assignment-11-server-brown.vercel.app/volunteerRequests",
-        postData
-      )
+      .post("http://localhost:5000/volunteerRequests", postData)
       .then((res) => {
         toast.success("Added on database successfully!");
         navigate("/AllvolunteerNeedposts");

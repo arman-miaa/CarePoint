@@ -14,9 +14,7 @@ const MyVolunteerRequestPost = () => {
   // console.log(mypost);
   useEffect(() => {
     axios
-      .get(
-        `https://ph-assignment-11-server-brown.vercel.app/myRequestPost/${user.email}`
-      )
+      .get(`http://localhost:5000/myRequestPost/${user.email}`,{withCredentials:true})
       .then((res) => {
         setMypost(res.data);
         setLoading(false);
@@ -40,9 +38,7 @@ const MyVolunteerRequestPost = () => {
       if (result.isConfirmed) {
         console.log("clicked delete", id);
         axios
-          .delete(
-            `https://ph-assignment-11-server-brown.vercel.app/deleteRequest/${id}`
-          )
+          .delete(`http://localhost:5000/deleteRequest/${id}`)
           .then((res) => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {

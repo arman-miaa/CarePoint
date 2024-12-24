@@ -25,8 +25,7 @@ const router = createBrowserRouter([
       {
         path: "AllvolunteerNeedposts",
         element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
-        loader: () =>
-          fetch("https://ph-assignment-11-server-brown.vercel.app/allPost"),
+        loader: () => fetch("http://localhost:5000/allPost"),
       },
       {
         path: "AddVolunteerNeedPostPage",
@@ -44,9 +43,7 @@ const router = createBrowserRouter([
           </Private>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://ph-assignment-11-server-brown.vercel.app/volunteerPosts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
 
       {
@@ -57,9 +54,7 @@ const router = createBrowserRouter([
           </Private>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://ph-assignment-11-server-brown.vercel.app/volunteerPosts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
 
       {
@@ -79,9 +74,7 @@ const router = createBrowserRouter([
           </Private>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://ph-assignment-11-server-brown.vercel.app/volunteerPosts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
       },
 
       {

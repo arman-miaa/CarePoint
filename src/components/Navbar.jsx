@@ -23,9 +23,13 @@ const Navbar = () => {
     if (darkMode) {
       document.body.classList.add("bg-gray-800");
       document.body.classList.remove("bg-base-100");
+      // document.body.classList.add("text-white");
+      // document.body.classList.remove("text-black");
     } else {
       document.body.classList.add("bg-base-100");
       document.body.classList.remove("bg-gray-800");
+      // document.body.classList.add("text-black");
+      // document.body.classList.remove("text-white");
     }
   }, [darkMode]);
 

@@ -57,10 +57,7 @@ const BeAVolunteer = () => {
     };
 
     axios
-      .patch(
-        `https://ph-assignment-11-server-brown.vercel.app/updatePost/${_id}`,
-        updateData
-      )
+      .patch(`http://localhost:5000/updatePost/${_id}`, updateData)
       .then((res) => {
         console.log(res.data);
         toast.success("Post updated successfully!");

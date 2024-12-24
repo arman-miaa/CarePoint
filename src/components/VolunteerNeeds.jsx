@@ -12,7 +12,7 @@ const VolunteerNeeds = () => {
 
   useEffect(() => {
     axios
-      .get("https://ph-assignment-11-server-brown.vercel.app/volunteerPosts")
+      .get("http://localhost:5000/volunteerPosts")
       .then((res) => {
         setVolunteerPosts(res.data);
         setLoading(false);
@@ -31,7 +31,7 @@ const VolunteerNeeds = () => {
         <div className="mt-12">
           {/* title and description */}
           <div className="text-center">
-            <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">
+            <h2 className="text-xl text-black font-bold md:text-2xl lg:text-3xl">
               Urgent Volunteer Opportunities
             </h2>
             <p className="w-1/2 mx-auto mt-4">
