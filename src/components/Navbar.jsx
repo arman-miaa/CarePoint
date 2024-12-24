@@ -4,32 +4,31 @@ import { AuthContext } from "../hooks/AuthProvider";
 import { toast } from "react-toastify";
 import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import { useTheme } from "../hooks/ThemeProvider ";
-// import { useTheme } from "../hooks/ThemeProvider";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  const [dropdown, setDropdown] = useState(false);
-  const { darkMode, toggleTheme } = useTheme(); // get darkMode and toggleTheme
-
-  const handleDropdown = () => {
-    setDropdown((prev) => !prev);
-  };
+  const { darkMode, toggleTheme } = useTheme(); 
+  const [isHovered, setIsHovered] = useState(false);
+   const [dropdown, setDropdown] = useState(false);
 
   const handleLogOut = () => {
+    setIsHovered(false)
     logOutUser();
     toast.success("Logged out successfully");
   };
+
+    const handleDropdown = () => {
+      setDropdown((prev) => !prev);
+    };
+
   useEffect(() => {
+    // setIsHovered(false)
     if (darkMode) {
       document.body.classList.add("bg-gray-800");
       document.body.classList.remove("bg-base-100");
-      // document.body.classList.add("text-white");
-      // document.body.classList.remove("text-black");
     } else {
       document.body.classList.add("bg-base-100");
       document.body.classList.remove("bg-gray-800");
-      // document.body.classList.add("text-black");
-      // document.body.classList.remove("text-white");
     }
   }, [darkMode]);
 
@@ -39,16 +38,16 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/AllvolunteerNeedposts">All volunteer Need posts</NavLink>
+        <NavLink to="/AllvolunteerNeedposts">All Volunteer Need Posts</NavLink>
       </li>
       <li>
         <NavLink to="/AddVolunteerNeedPostPage">
-          Add volunteer Need posts
+          Add Volunteer Need Posts
         </NavLink>
       </li>
-      <li>
-        <NavLink onClick={handleDropdown}>My Profile</NavLink>
-      </li>
+      {/* <li>
+        <NavLink>My Profile</NavLink>
+      </li> */}
     </>
   );
 
@@ -83,50 +82,89 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">CarePoint</a>
+        <a className=" text-xl cursor-pointer">
+          <span className="text-blue-208 text-2xl">C</span>arePoint
+          <span className="text-red-800">.</span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
 
-      {dropdown && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-          <Link to="/AllvolunteerNeedposts">
-            <button onClick={handleDropdown} className="btn btn-primary">
-              Add Volunteer need Post
-            </button>
-          </Link>
-          <Link to="/ManageMyPosts">
-            <button onClick={handleDropdown} className="btn btn-primary">
-              Manage My Posts{" "}
-            </button>
-          </Link>
-        </div>
-      )}
-
-      {/* Theme Toggle Button */}
-      <button
-        onClick={toggleTheme} // Call toggleTheme when clicked
-        className="mr-6 px-2 capitalize flex justify-center items-center gap-0 md:gap-2"
-        aria-label="Toggle Theme"
-      >
-        {darkMode ? (
-          <SunIcon className="h-6 w-6 md:h-8 md:w-8 text-yellow-500" />
-        ) : (
-          <MoonIcon className="h-6 w-6 md:h-8 md:w-8" />
-        )}
-      </button>
-
+      {/* User Profile Section */}
       {user?.email ? (
-        <div className="navbar-end">
-          <img
-            className="w-16 h-16 rounded-full cursor-pointer"
-            src={user.photoURL}
-            alt=""
-          />
-          <button onClick={handleLogOut} className="btn">
-            Logout
+        <div className="navbar-end relative flex items-center gap-4">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className=" px-2 capitalize flex justify-center items-center gap-0 md:gap-2"
+            aria-label="Toggle Theme"
+          >
+            {darkMode ? (
+              <SunIcon className="h-6 w-6   md:h-8 md:w-8 text-yellow-500" />
+            ) : (
+              <MoonIcon className="h-6 w-6   md:h-8 md:w-8" />
+            )}
           </button>
+          {/* User Image */}
+          <img
+            className="w-16 h-16 border-2 rounded-full cursor-pointer"
+            src={user.photoURL}
+            alt="User Profile"
+            onMouseEnter={() => setIsHovered(true)}
+            // onMouseLeave={() => setIsHovered(false)}
+          />
+
+          <div>
+            <Link>
+              <button
+                onClick={handleDropdown}
+                className="border-2 p-2 rounded-lg border-blue-400"
+              >
+                My Profile
+              </button>
+            </Link>
+          </div>
+
+          {/* dropdown for my profile */}
+          {dropdown && (
+            <div className="fixed top-20 bg-white rounded-xl p-8">
+              <div className="  flex-col   gap-2   flex justify-center items-center shadow-xl">
+                <Link to="/AllvolunteerNeedposts">
+                  <button onClick={handleDropdown} className="btn btn-primary">
+                    Add Volunteer need Post
+                  </button>
+                </Link>
+                <Link to="/ManageMyPosts">
+                  <button onClick={handleDropdown} className="btn btn-primary">
+                    Manage My Posts{" "}
+                  </button>
+                </Link>
+              </div>
+              <div
+                onClick={handleDropdown}
+                className="w-full  text-right -mb-4 mt-4"
+              >
+                <button className="btn border-2">X</button>
+              </div>
+            </div>
+          )}
+
+          {/* Dropdown Menu for hover */}
+          {isHovered && (
+            <div
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="absolute top-20 right-10 w-48 bg-white shadow-lg rounded-lg p-3"
+            >
+              <p className="text-sm font-medium text-gray-700 mb-2">
+                {user.displayName}
+              </p>
+              <button onClick={handleLogOut} className="btn btn-primary w-full">
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="navbar-end gap-2">
