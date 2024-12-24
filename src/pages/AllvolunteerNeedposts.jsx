@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import { FaTh, FaTable } from "react-icons/fa"; // Importing Font Awesome icons
 
 const AllvolunteerNeedposts = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const AllvolunteerNeedposts = () => {
   const initialPosts = useLoaderData();
   const [volunteerPosts, setVolunteerPosts] = useState(initialPosts);
   const [search, setSearch] = useState("");
+  const [layout, setLayout] = useState("card"); // Default layout is card
 
   useEffect(() => {
     if (volunteerPosts) {
@@ -20,7 +22,9 @@ const AllvolunteerNeedposts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/allPost?search=${search}`,{withCredentials:true})
+      .get(`http://localhost:5000/allPost?search=${search}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setVolunteerPosts(res.data);
       })
@@ -49,6 +53,24 @@ const AllvolunteerNeedposts = () => {
             />
           </div>
 
+          {/* Change Layout Icons */}
+          <div className="text-center mb-4">
+            {/* Grid Icon for Card Layout */}
+            <button
+              onClick={() => setLayout("card")}
+              className="btn btn-secondary mr-2"
+            >
+              <FaTh size={24} />
+            </button>
+            {/* Table Icon for Table Layout */}
+            <button
+              onClick={() => setLayout("table")}
+              className="btn btn-secondary"
+            >
+              <FaTable size={24} />
+            </button>
+          </div>
+
           {/* Conditional Rendering for No Data */}
           {volunteerPosts.length === 0 ? (
             <div className="text-center mt-8">
@@ -57,7 +79,7 @@ const AllvolunteerNeedposts = () => {
                 check back later.
               </h2>
             </div>
-          ) : (
+          ) : layout === "card" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {volunteerPosts.map((volunteerPost) => (
                 <div key={volunteerPost._id}>
@@ -97,6 +119,43 @@ const AllvolunteerNeedposts = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="table w-full">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {volunteerPosts.map((volunteerPost) => (
+                    <tr key={volunteerPost._id}>
+                      <td>{volunteerPost.title}</td>
+                      <td>{volunteerPost.category}</td>
+                      <td>
+                        {new Date(
+                          volunteerPost.postDeadline
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </td>
+                      <td>
+                        <Link to={`/detailsPage/${volunteerPost._id}`}>
+                          <button className="btn btn-primary">
+                            View Details
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
