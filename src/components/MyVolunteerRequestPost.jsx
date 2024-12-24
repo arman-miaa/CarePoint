@@ -38,7 +38,7 @@ const MyVolunteerRequestPost = () => {
       if (result.isConfirmed) {
         console.log("clicked delete", id);
         axios
-          .delete(`http://localhost:5000/deleteRequest/${id}`)
+          .delete(`http://localhost:5000/deleteRequest/${id}`,{withCredentials:true})
           .then((res) => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {
@@ -101,11 +101,12 @@ const MyVolunteerRequestPost = () => {
                       <td>{post.title}</td>
                       <td>{post.location}</td>
                       <td>
+                      
                         <button
                           onClick={() => handleDelete(post._id)}
-                          className="btn "
+                          className="inline-flex items-center px-8 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
                         >
-                          Cancel
+                          Censel
                         </button>
                       </td>
                     </tr>

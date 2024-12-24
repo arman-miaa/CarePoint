@@ -11,6 +11,11 @@ const BeAVolunteer = () => {
   const navigate = useNavigate();
 
   const details = useLoaderData();
+  // Check if the response contains the "Unauthorized access1" message
+  // if (details?.message === "Unauthorized access1") {
+  //   toast.error("Your token or email is invalid");
+  //   return null; // Prevent rendering the page if unauthorized
+  // }
   console.log(details._id);
 
   const {
@@ -64,7 +69,9 @@ const BeAVolunteer = () => {
     };
     console.log(postData);
     axios
-      .post("http://localhost:5000/volunteerRequests", postData)
+      .post("http://localhost:5000/volunteerRequests", postData, {
+        withCredentials: true,
+      })
       .then((res) => {
         toast.success("Added on database successfully!");
         navigate("/AllvolunteerNeedposts");

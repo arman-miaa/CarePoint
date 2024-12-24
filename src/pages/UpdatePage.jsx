@@ -10,6 +10,13 @@ import { Helmet } from "react-helmet";
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
   const updatePost = useLoaderData();
+  console.log(updatePost);
+  // Check if the response contains the "Unauthorized access1" message
+  // if (updatePost?.message === "Unauthorized access1") {
+  //   toast.error("Your token or email is invalid");
+  //   return null; // Prevent rendering the page if unauthorized
+  // }
+
   const navigate = useNavigate();
 
   const {
@@ -57,7 +64,9 @@ const BeAVolunteer = () => {
     };
 
     axios
-      .patch(`http://localhost:5000/updatePost/${_id}`, updateData)
+      .patch(`http://localhost:5000/updatePost/${_id}`, updateData, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res.data);
         toast.success("Post updated successfully!");
@@ -187,7 +196,10 @@ const BeAVolunteer = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button
+          type="submit"
+          className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+        >
           Update Post
         </button>
       </form>

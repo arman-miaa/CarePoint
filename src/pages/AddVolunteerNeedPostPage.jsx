@@ -44,7 +44,7 @@ const AddVolunteerNeedPostPage = () => {
     };
     console.log(postData);
     axios
-      .post("http://localhost:5000/volunteerPosts", postData)
+      .post("http://localhost:5000/volunteerPosts", postData,{withCredentials:true})
       .then((res) => {
         // console.log(res.data)
         toast.success("Added on database successfully!");
@@ -164,8 +164,11 @@ const AddVolunteerNeedPostPage = () => {
             className="input input-bordered w-full bg-gray-200"
           />
         </div>
-        <button type="submit" className="btn btn-primary w-full">
-          Add Post
+        <button
+          type="submit"
+          className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+        >
+         Add Post
         </button>
       </form>
     </div>

@@ -1,20 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../pages/Loading";
+import useAxiosSequre from "../hooks/useAxiosSecure";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const MyVolunteerNeedPosts = () => {
   const { user } = useContext(AuthContext);
   const [mypost, setMypost] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxiosSequre();
 
   // console.log(mypost);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myPost/${user.email}`,{withCredentials:true})
+    axiosInstance
+      .get(`/myPost/${user.email}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setMypost(res.data);
         setLoading(false);
@@ -37,8 +41,10 @@ const MyVolunteerNeedPosts = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("clicked delete", id);
-        axios
-          .delete(`http://localhost:5000/deletePost/${id}`)
+        axiosInstance
+          .delete(`/deletePost/${id}`, {
+            withCredentials: true,
+          })
           .then((res) => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {
@@ -99,11 +105,14 @@ const MyVolunteerNeedPosts = () => {
                       <td>{post.location}</td>
                       <td className="flex gap-2 flex-col md:flex-row">
                         <Link to={`/updatePost/${post._id}`}>
-                          <button className="btn ">Update</button>
+                          <button className="inline-flex items-center px-4 py-2 bg-emerald-600 transition ease-in-out delay-75 hover:bg-emerald-800 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
+                            Update
+                          </button>
                         </Link>
+
                         <button
                           onClick={() => handleDelete(post._id)}
-                          className="btn "
+                          className="inline-flex items-center px-4 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
                         >
                           Delete
                         </button>

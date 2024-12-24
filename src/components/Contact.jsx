@@ -63,7 +63,7 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="w-full p-3 text-[var(--text-color)] border border-[#ADFF00] rounded"
+                className="w-full p-3 text-[var(--text-color)] border border-emerald-600 rounded"
                 required
               />
             </div>
@@ -72,7 +72,7 @@ const Contact = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-3 text-[var(--text-color)] border border-[#ADFF00] rounded"
+                className="w-full p-3 text-[var(--text-color)] border border-emerald-600 rounded"
                 required
               />
             </div>
@@ -80,14 +80,15 @@ const Contact = () => {
               <label>Message</label>
               <textarea
                 placeholder="Enter your message"
-                className="w-full p-3 text-[var(--text-color)] resize-none border border-[#ADFF00] rounded"
+                className="w-full p-3 text-[var(--text-color)] resize-none border border-emerald-700 rounded"
                 rows="5"
                 required
               ></textarea>
             </div>
+
             <button
               type="submit"
-              className="w-full py-3 bg-[#ADFF00] text-black font-bold rounded hover:bg-[#aeff00c6] transition"
+              className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
             >
               Submit
             </button>

@@ -43,7 +43,10 @@ const router = createBrowserRouter([
           </Private>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
+            method: 'GET',
+            credentials:"include",
+          }),
       },
 
       {
@@ -54,7 +57,10 @@ const router = createBrowserRouter([
           </Private>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
+          fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
+            method: "GET",
+            credentials:"include",
+          }),
       },
 
       {
@@ -66,16 +72,20 @@ const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "updatePost/:id",
-        element: (
-          <Private>
-            <UpdatePage></UpdatePage>
-          </Private>
-        ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteerPosts/${params.id}`),
-      },
+  {
+  path: "updatePost/:id",
+  element: (
+    <Private>
+      <UpdatePage></UpdatePage>
+    </Private>
+  ),
+  loader: ({ params }) =>
+    fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
+      method: 'GET', 
+      credentials: "include", 
+    }),
+},
+
 
       {
         path: "login",
