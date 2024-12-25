@@ -26,7 +26,8 @@ const router = createBrowserRouter([
       {
         path: "AllvolunteerNeedposts",
         element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
-        loader: () => fetch("http://localhost:5000/allPost"),
+        loader: () =>
+          fetch("https://ph-assignment-11-server-brown.vercel.app/allPost"),
       },
       {
         path: "AddVolunteerNeedPostPage",
@@ -36,24 +37,25 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
-{
-  path: "detailsPage/:id",
-  element: (
-    <Private>
-      <DetailsPage />
-    </Private>
-  ),
-  loader: async ({ params }) => {
-    try {
-      const response = await axiosInstance.get(`/volunteerPosts/${params.id}`);
-      return response.data;  
-    } catch (error) {
-      console.error("Error occurred in loader:", error);  
-      throw error;  
-    }
-  },
-},
-
+      {
+        path: "detailsPage/:id",
+        element: (
+          <Private>
+            <DetailsPage />
+          </Private>
+        ),
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosInstance.get(
+              `/volunteerPosts/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            console.error("Error occurred in loader:", error);
+            throw error;
+          }
+        },
+      },
 
       {
         path: "beAVolunteer/:id",

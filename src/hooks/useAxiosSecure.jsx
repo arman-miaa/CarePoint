@@ -4,17 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { toast } from "react-toastify";
 
-
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://ph-assignment-11-server-brown.vercel.app",
   withCredentials: true,
 });
-
 
 const useAxiosSequre = () => {
   const { logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     axiosInstance.interceptors.response.use(
@@ -29,7 +26,6 @@ const useAxiosSequre = () => {
                 toast.error("Access denied! Permission required.");
               }
               navigate("/login");
-             
             })
             .catch((err) => console.error("Logout error:", err));
         }

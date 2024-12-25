@@ -4,7 +4,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { FaTh, FaTable } from "react-icons/fa"; // Importing Font Awesome icons
+import { FaTh, FaTable } from "react-icons/fa";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const AllvolunteerNeedposts = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,8 @@ const AllvolunteerNeedposts = () => {
   const initialPosts = useLoaderData();
   const [volunteerPosts, setVolunteerPosts] = useState(initialPosts);
   const [search, setSearch] = useState("");
-  const [layout, setLayout] = useState("card"); // Default layout is card
+  const [layout, setLayout] = useState("card");
+  const { darkMode } = useTheme();
 
   useEffect(() => {
     if (volunteerPosts) {
@@ -22,9 +24,12 @@ const AllvolunteerNeedposts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/allPost?search=${search}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://ph-assignment-11-server-brown.vercel.app/allPost?search=${search}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setVolunteerPosts(res.data);
       })
@@ -34,7 +39,7 @@ const AllvolunteerNeedposts = () => {
   }, [search]);
 
   return (
-    <section className="min-h-screen bg-gray-100">
+    <section className="">
       {loader ? (
         <Loading />
       ) : (
@@ -58,14 +63,14 @@ const AllvolunteerNeedposts = () => {
             {/* Grid Icon for Card Layout */}
             <button
               onClick={() => setLayout("card")}
-              className="btn btn-secondary mr-2"
+              className="btn bg-emerald-700 border-none mr-2"
             >
               <FaTh size={24} />
             </button>
             {/* Table Icon for Table Layout */}
             <button
               onClick={() => setLayout("table")}
-              className="btn btn-secondary"
+              className="btn bg-emerald-700 border-none"
             >
               <FaTable size={24} />
             </button>
@@ -92,14 +97,38 @@ const AllvolunteerNeedposts = () => {
                       />
                     </figure>
                     <div className="card-body p-4">
-                      <h2 className="card-title text-xl font-semibold text-gray-800">
+                      <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
                         {volunteerPost.title}
                       </h2>
-                      <p className="text-sm text-gray-600">
-                        Category: {volunteerPost.category}
+                      <p className="font-semibold md:text-lg">
+                        <span className="font-semibold md:text-xl">
+                          Category:
+                        </span>{" "}
+                        {volunteerPost.category}
                       </p>
-                      <p className="text-sm text-gray-600">
-                        Deadline:{" "}
+                      <p className="font-semibold md:text-lg text-emerald-700">
+                        <span className="font-semibold md:text-xl text-black">
+                          Volunteer Need:
+                        </span>{" "}
+                        <span
+                          className={`${
+                            volunteerPost.volunteers <= 0
+                              ? "text-red-400"
+                              : "text-emerald-700"
+                          }`}
+                        >
+                          {volunteerPost.volunteers <= 0 ? (
+                            <>{volunteerPost.volunteers} (No needed)</>
+                          ) : (
+                            volunteerPost.volunteers
+                          )}
+                        </span>
+                      </p>
+
+                      <p className="font-semibold md:text-lg">
+                        <span className="font-semibold md:text-xl">
+                          Deadline:{" "}
+                        </span>
                         {new Date(
                           volunteerPost.postDeadline
                         ).toLocaleDateString("en-US", {
@@ -135,21 +164,52 @@ const AllvolunteerNeedposts = () => {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="table w-full">
+              <table className="table w-full mt-8 shadow-md rounded-lg overflow-hidden table-fixed">
                 <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Deadline</th>
-                    <th>Action</th>
+                  <tr
+                    className={`text-emerald-700 font-bold text-lg md:text-xl ${
+                      darkMode
+                        ? "bg-gradient-to-r from-gray-900 via-gray-900 to-gray-900"
+                        : "bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
+                    }`}
+                  >
+                    <th className="px-4 py-2 text-left">#</th>
+                    <th className="px-4 py-2 text-left">Image</th>
+                    <th className="px-4 py-2 text-left">Title</th>
+                    <th className="px-4 py-2 text-left">Category</th>
+                    <th className="px-4 py-2 text-left">Deadline</th>
+                    <th className="px-4 py-2 text-left">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {volunteerPosts.map((volunteerPost) => (
-                    <tr key={volunteerPost._id}>
-                      <td>{volunteerPost.title}</td>
-                      <td>{volunteerPost.category}</td>
+                  {volunteerPosts.map((volunteerPost, index) => (
+                    <tr
+                      key={volunteerPost._id}
+                      className="transition-all text-black font-bold dark:text-gray-400 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105 cursor-pointer"
+                    >
+                      <th className="text-emerald-700 font-bold">
+                        {index + 1}
+                      </th>
                       <td>
+                        <img
+                          className="w-12 h-12 rounded-full object-cover shadow-sm"
+                          src={volunteerPost.thumbnail}
+                          alt="thumbnail"
+                        />
+                      </td>
+                      <td
+                        className={`px-4 py-2 ${
+                          volunteerPost.volunteers <= 0
+                            ? "text-red-500 font-semibold"
+                            : ""
+                        }`}
+                      >
+                        {volunteerPost.volunteers <= 0
+                          ? `${volunteerPost.volunteers} (No volunteers needed)`
+                          : volunteerPost.volunteers}
+                      </td>
+
+                      <td className="px-4 py-2">
                         {new Date(
                           volunteerPost.postDeadline
                         ).toLocaleDateString("en-US", {
@@ -158,15 +218,15 @@ const AllvolunteerNeedposts = () => {
                           day: "numeric",
                         })}
                       </td>
-                      <td>
+                      <td className="px-4 py-2">
                         <Link to={`/detailsPage/${volunteerPost._id}`}>
                           <button
                             type="submit"
-                            className="flex justify-center gap-2 items-center  shadow-xl text-lg border-emerald-500 backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                            className="flex justify-center gap-2 items-center shadow-xl text-lg border-emerald-500 backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:border-none hover:text-gray-300 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
                           >
                             View Details
                             <svg
-                              className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                              className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border dark:bg-gray-300 border-gray-700 dark:border-gray-300 group-hover:border-none p-2 rotate-45"
                               viewBox="0 0 16 19"
                               xmlns="http://www.w3.org/2000/svg"
                             >

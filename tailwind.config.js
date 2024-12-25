@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        mainColor: "emerald",
+        mainColor: "emerald", // predefined color
+        "custom-gray": "#1a2433", // custom gray color
       },
     },
   },

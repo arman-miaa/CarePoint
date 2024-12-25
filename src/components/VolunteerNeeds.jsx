@@ -8,13 +8,13 @@ import { useTheme } from "../hooks/ThemeProvider ";
 const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-    const { darkMode } = useTheme();
+  const { darkMode } = useTheme();
 
   // console.log(volunteerPosts);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/volunteerPosts")
+      .get("https://ph-assignment-11-server-brown.vercel.app/volunteerPosts")
       .then((res) => {
         setVolunteerPosts(res.data);
         setLoading(false);
@@ -56,7 +56,8 @@ const VolunteerNeeds = () => {
               <div key={volunteerPost._id}>
                 <div className="card card-compact bg-base-200  shadow-xl">
                   <figure>
-                    <img className="rounded-xl w-full h-[300px] object-cover"
+                    <img
+                      className="rounded-xl w-full h-[300px] object-cover"
                       src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
                       alt="Shoes"
                     />

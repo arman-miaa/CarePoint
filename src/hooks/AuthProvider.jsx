@@ -40,19 +40,25 @@ const AuthProvider = ({ children }) => {
       if (currectUser?.email) {
         const user = { email: currectUser?.email };
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post("https://ph-assignment-11-server-brown.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
           .then((res) => {
             console.log("log in", res.data);
             setLoader(false);
           });
       } else {
-        axios.post("http://localhost:5000/logout", {}, { withCredentials: true })
+        axios
+          .post(
+            "https://ph-assignment-11-server-brown.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          )
           .then((res) => {
-          console.log('logout ', res.data);
-          setLoader(false);
-        })
+            console.log("logout ", res.data);
+            setLoader(false);
+          });
       }
-     
     });
     return () => {
       unsubscribe();
@@ -61,9 +67,8 @@ const AuthProvider = ({ children }) => {
 
   // logout suer
   const logOutUser = () => {
-    console.log('logout')
+    console.log("logout");
     return signOut(auth);
-    
   };
 
   const updateUserProfile = (updateData) => {
