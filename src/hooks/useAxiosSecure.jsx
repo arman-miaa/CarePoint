@@ -14,6 +14,7 @@ export const axiosInstance = axios.create({
 const useAxiosSequre = () => {
   const { logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     axiosInstance.interceptors.response.use(

@@ -7,19 +7,19 @@ import { useTheme } from "../hooks/ThemeProvider ";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  const { darkMode, toggleTheme } = useTheme(); 
+  const { darkMode, toggleTheme } = useTheme();
   const [isHovered, setIsHovered] = useState(false);
-   const [dropdown, setDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
   const handleLogOut = () => {
-    setIsHovered(false)
+    setIsHovered(false);
     logOutUser();
     toast.success("Logged out successfully");
   };
 
-    const handleDropdown = () => {
-      setDropdown((prev) => !prev);
-    };
+  const handleDropdown = () => {
+    setDropdown((prev) => !prev);
+  };
 
   useEffect(() => {
     // setIsHovered(false)
@@ -45,7 +45,6 @@ const Navbar = () => {
           Add Volunteer Need Posts
         </NavLink>
       </li>
-    
     </>
   );
 
@@ -88,22 +87,21 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className=" px-2 capitalize flex justify-center items-center gap-0 md:gap-2"
+        aria-label="Toggle Theme"
+      >
+        {darkMode ? (
+          <SunIcon className="h-6 w-6   md:h-8 md:w-8 text-yellow-500" />
+        ) : (
+          <MoonIcon className="h-6 w-6   md:h-8 md:w-8" />
+        )}
+      </button>
       {/* User Profile Section */}
       {user?.email ? (
         <div className="navbar-end relative flex items-center gap-4">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className=" px-2 capitalize flex justify-center items-center gap-0 md:gap-2"
-            aria-label="Toggle Theme"
-          >
-            {darkMode ? (
-              <SunIcon className="h-6 w-6   md:h-8 md:w-8 text-yellow-500" />
-            ) : (
-              <MoonIcon className="h-6 w-6   md:h-8 md:w-8" />
-            )}
-          </button>
           {/* User Image */}
           <img
             className="w-16 h-16 border-2 rounded-full cursor-pointer"

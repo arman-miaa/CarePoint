@@ -36,25 +36,24 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
-      {
-        path: "detailsPage/:id",
-        element: (
-          <Private>
-            <DetailsPage />
-          </Private>
-        ),
-        loader: async ({ params }) => {
-          try {
-            const response = await axiosInstance.get(
-              `/volunteerPosts/${params.id}`
-            );
-            return response.data;
-          } catch (error) {
-            console.error("Error occurred in loader:", error);
-            throw error;
-          }
-        },
-      },
+{
+  path: "detailsPage/:id",
+  element: (
+    <Private>
+      <DetailsPage />
+    </Private>
+  ),
+  loader: async ({ params }) => {
+    try {
+      const response = await axiosInstance.get(`/volunteerPosts/${params.id}`);
+      return response.data;  
+    } catch (error) {
+      console.error("Error occurred in loader:", error);  
+      throw error;  
+    }
+  },
+},
+
 
       {
         path: "beAVolunteer/:id",
