@@ -126,7 +126,7 @@ const Navbar = () => {
           {dropdown && (
             <div className="fixed top-20 bg-white rounded-xl">
               <div className="  flex-col   gap-2 p-4 rounded-xl  flex justify-center items-center shadow-xl">
-                <Link to="/AllvolunteerNeedposts">
+                <Link to="/AddVolunteerNeedPostPage">
                   <button
                     onClick={handleDropdown}
                     className="relative  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
@@ -142,16 +142,14 @@ const Navbar = () => {
                     Manage My Posts
                   </button>
                 </Link>
-              <div
-                onClick={handleDropdown}
-                className="w-full  text-right pt-2  "
-              >
-               
-                <button className="inline-flex items-center px-8 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
-          
-                 X
-                </button>
-              </div>
+                <div
+                  onClick={handleDropdown}
+                  className="w-full  text-right pt-2  "
+                >
+                  <button className="inline-flex items-center px-8 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
+                    X
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -170,7 +168,7 @@ const Navbar = () => {
                 onClick={handleLogOut}
                 className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-red-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-red-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               >
-               LogOut
+                LogOut
               </button>
             </div>
           )}
