@@ -8,7 +8,7 @@ const MainLayout = () => {
   
     return (
       <div>
-        <div className={`${darkMode ? "bg-[#1a2433]" : ""}`}>
+        <div className={`${darkMode ? "bg-[#1a2433]" : "bg-base-200"}`}>
           <Navbar></Navbar>
         </div>
 

@@ -51,7 +51,7 @@ const Navbar = () => {
   return (
     <div
       className={`container mx-auto sticky top-0 left-0 z-50 navbar ${
-        darkMode ? " text-white" : "bg-base-100"
+        darkMode ? " text-white" : ""
       }`}
     >
       <div className="navbar-start">
@@ -83,7 +83,7 @@ const Navbar = () => {
         </div>
         <a
           className={`text-xl cursor-pointer font-semibold hover:font-bold ${
-            darkMode ? "text-emerald-400" : ""
+            darkMode ? "text-emerald-400" : "text-emerald-700"
           }`}
         >
           <span className="text-blue-208 text-2xl">C</span>arePoint
@@ -120,7 +120,9 @@ const Navbar = () => {
           <div>
             <button
               onClick={handleDropdown}
-              className={`relative  py-2 px-4  bg-transparent isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold ${darkMode ? 'text-white': 'text-black'}    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
+              className={`relative  py-2 px-4  bg-transparent isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold ${
+                darkMode ? "text-white" : "text-black"
+              }    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
             >
               My Profile
             </button>
@@ -128,12 +130,16 @@ const Navbar = () => {
 
           {/* dropdown for my profile */}
           {dropdown && (
-            <div className="fixed top-20 bg-white rounded-xl">
+            <div
+              className={`fixed top-20  ${
+                darkMode ? "bg-transparent border-2 border-emerald-700" : ""
+              } rounded-xl`}
+            >
               <div className="  flex-col   gap-2 p-4 rounded-xl  flex justify-center items-center shadow-xl">
                 <Link to="/AddVolunteerNeedPostPage">
                   <button
                     onClick={handleDropdown}
-                    className="relative  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className={`relative  py-2 px-4   isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold     rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
                   >
                     Add Volunteer need Post
                   </button>
@@ -141,7 +147,7 @@ const Navbar = () => {
                 <Link to="/ManageMyPosts">
                   <button
                     onClick={handleDropdown}
-                    className="relative   py-2 px-8  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className="relative   py-2 px-8   isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                   >
                     Manage My Posts
                   </button>
@@ -163,14 +169,14 @@ const Navbar = () => {
             <div
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className="absolute top-20 right-10 w-48 bg-white shadow-lg rounded-lg p-3"
+              className={`absolute top-20 right-10 w-48 ${darkMode ? 'bg-transparent border-2 border-emerald-700':''} shadow-lg rounded-lg p-3`}
             >
-              <p className="text-sm md:text-xl text-center font-medium text-gray-700 mb-2">
+              <p className="text-sm md:text-xl text-center font-medium  mb-2">
                 {user.displayName}
               </p>
               <button
                 onClick={handleLogOut}
-                className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-red-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-red-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                className="relative w-full  py-2 px-4   isolation-auto z-10 border-2 border-red-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-red-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold     rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               >
                 LogOut
               </button>

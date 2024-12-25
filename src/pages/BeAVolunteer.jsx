@@ -6,11 +6,14 @@ import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import useAxiosSequre from "../hooks/useAxiosSecure";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosInstance = useAxiosSequre();
+      const { darkMode } = useTheme();
+  
 
   const details = useLoaderData();
   // Check if the response contains the "Unauthorized access1" message
@@ -84,70 +87,125 @@ const BeAVolunteer = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
+    <div
+      className={`max-w-3xl  mx-auto mt-10 p-6 ${
+        darkMode
+          ? "bg-transparent border-2 border-emerald-700 rounded-xl"
+          : "bg-base-200"
+      } rounded shadow`}
+    >
       <Helmet>
         <title>Be A Volunteer Page || CarePoint</title>
       </Helmet>
-      <h1 className="text-2xl font-bold text-center mb-6">
-        Add Volunteer Need Post
+      <h1
+        className={` text-2xl mt-4 md:text-3xl text-center lg:text-5xl font-bold mb-4 text-emerald-700 ${
+          darkMode ? "" : ""
+        }`}
+      >
+        Be A Volunteer
       </h1>
       <form onSubmit={handleSubmitForm} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Thumbnail</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Thumbnail
+          </label>
           <input
             type="url"
             defaultValue={thumbnail}
             name="thumbnail"
             placeholder="Enter image URL"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Post Title</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Post Title
+          </label>
           <input
             type="text"
             name="title"
             defaultValue={title}
             placeholder="Enter post title"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Description</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Description
+          </label>
           <textarea
             name="description"
             defaultValue={description}
             placeholder="Enter description"
-            className="textarea textarea-bordered w-full resize-none"
+            // className="textarea textarea-bordered w-full resize-none"
+            className={`textarea textarea-bordered w-full resize-none mt-2 border-emerald-700 bg-transparent  focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           ></textarea>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Category</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Category
+          </label>
           <input
             name="category"
             defaultValue={category}
-            className="select select-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
             readOnly
           ></input>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Location</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Location
+          </label>
           <input
             type="text"
             name="location"
             defaultValue={location}
             readOnly
             placeholder="Enter location"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             No. of Volunteers Needed
           </label>
           <input
@@ -156,14 +214,24 @@ const BeAVolunteer = () => {
             defaultValue={volunteers}
             readOnly
             placeholder="Enter number"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Deadline</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Deadline
+          </label>
           <DatePicker
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             dateFormat="yyyy-MM-dd"
             required
             name="postDeadline"
@@ -172,7 +240,11 @@ const BeAVolunteer = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             Organizer Name
           </label>
           <input
@@ -180,11 +252,17 @@ const BeAVolunteer = () => {
             name="userName"
             defaultValue={organizerName}
             readOnly
-            className="input input-bordered w-full bg-gray-200"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             Organizer Email
           </label>
           <input
@@ -192,12 +270,18 @@ const BeAVolunteer = () => {
             name="userEmail"
             defaultValue={organizerEmail}
             readOnly
-            className="input input-bordered w-full bg-gray-200"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
           />
         </div>
         <div>
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label
+              className={`label-text font-semibold ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
               Volunteer Name
             </label>
             <input
@@ -205,11 +289,17 @@ const BeAVolunteer = () => {
               name="volunteerName"
               defaultValue={user?.displayName}
               readOnly
-              className="input input-bordered w-full bg-gray-200"
+              className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label
+              className={`label-text font-semibold ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
               Voluntter Email
             </label>
             <input
@@ -217,31 +307,50 @@ const BeAVolunteer = () => {
               name="volunteerEmail"
               defaultValue={user?.email}
               readOnly
-              className="input input-bordered w-full bg-gray-200"
+              className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
             />
           </div>
         </div>
         <div>
           <div>
-            <label className="block text-sm font-medium mb-1">Suggestion</label>
+            <label
+              className={`label-text font-semibold ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
+              Suggestion
+            </label>
             <textarea
               name="suggestion"
               placeholder="Enter your suggestion"
-              className="textarea textarea-bordered w-full resize-none"
+              // className="textarea textarea-bordered w-full resize-none"
+              className={`textarea textarea-bordered w-full resize-none mt-2 border-emerald-700 bg-transparent  focus:outline-none focus:ring-2 ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
               required
             ></textarea>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Status</label>
+            <label
+              className={`label-text font-semibold ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
+              Status
+            </label>
             <input
               type="text"
               name="status"
               defaultValue="requested"
-              className="input input-bordered w-full bg-gray-200"
+              className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn text-gray-50 hover:bg-emerald-800 bg-emerald-700 border-none w-full">
           Request
         </button>
       </form>
