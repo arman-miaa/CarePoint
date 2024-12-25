@@ -5,12 +5,17 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../hooks/AuthProvider";
+import { useTheme } from "../hooks/ThemeProvider ";
+import lottieSignUp from '../assets/lottie/signup.json';
+import Lottie from "lottie-react";
 
 const SignUp = () => {
   const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+    const { darkMode, toggleTheme } = useTheme();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,33 +74,43 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero min-h-screen" style={{ backgroundColor: "#1D1D1D" }}>
+    <div className="hero min-h-screen">
       <Helmet>
         <title>SignUp Page || CarePoint</title>
       </Helmet>
-      <div className="hero-content flex-col">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold mb-4" style={{ color: "#ADFF00" }}>
-            Join Us!
-          </h1>
-          <p className="text-lg text-gray-400">
-            Create an account to unlock amazing game reviews and features.
-          </p>
+      <div className="flex items-center justify-between flex-col md:flex-row">
+        <div className="flex-1">
+          <Lottie animationData={lottieSignUp}></Lottie>
         </div>
         <div
-          className="card w-full max-w-md shadow-lg rounded-lg mt-6"
-          style={{
-            backgroundColor: "#292929",
-            borderColor: "#ADFF00",
-            borderWidth: "1px",
-          }}
+          className={`${
+            darkMode ? "bg-gray-800 border-emerald-800 border-2" : "bg-base-200"
+          } shadow-xl card flex-1 w-full max-w-md  rounded-lg mt-6`}
         >
+          <div className="text-center">
+            <h1
+              className={` text-2xl mt-4 md:text-3xl lg:text-5xl font-bold mb-4 text-emerald-700 ${
+                darkMode ? "" : ""
+              }`}
+            >
+              Join US!
+            </h1>
+            <p
+              className={`text-lg w-4/5 mx-auto ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
+              Create an account to unlock amazing game reviews and features.
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span
-                  className="label-text font-semibold"
-                  style={{ color: "#ADFF00" }}
+                  className={`label-text font-semibold ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                 >
                   Name
                 </span>
@@ -104,20 +119,18 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                className="input input-bordered focus:outline-none focus:ring-2 transition-all"
-                style={{
-                  backgroundColor: "#1D1D1D",
-                  color: "#ADFF00",
-                  borderColor: "#ADFF00",
-                }}
+                className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                  darkMode ? "text-gray-400" : "text-black"
+                }`}
                 required
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span
-                  className="label-text font-semibold"
-                  style={{ color: "#ADFF00" }}
+                  className={`label-text font-semibold ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                 >
                   Photo URL
                 </span>
@@ -127,19 +140,17 @@ const SignUp = () => {
                 name="photo"
                 placeholder="Enter your photo URL"
                 required
-                className="input input-bordered focus:outline-none focus:ring-2 transition-all"
-                style={{
-                  backgroundColor: "#1D1D1D",
-                  color: "#ADFF00",
-                  borderColor: "#ADFF00",
-                }}
+                className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                  darkMode ? "text-gray-400" : "text-black"
+                }`}
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span
-                  className="label-text font-semibold"
-                  style={{ color: "#ADFF00" }}
+                  className={`label-text font-semibold ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                 >
                   Email
                 </span>
@@ -148,20 +159,18 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="input input-bordered focus:outline-none focus:ring-2 transition-all"
-                style={{
-                  backgroundColor: "#1D1D1D",
-                  color: "#ADFF00",
-                  borderColor: "#ADFF00",
-                }}
+                className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                  darkMode ? "text-gray-400" : "text-black"
+                }`}
                 required
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span
-                  className="label-text font-semibold"
-                  style={{ color: "#ADFF00" }}
+                  className={`label-text font-semibold ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                 >
                   Password
                 </span>
@@ -170,48 +179,33 @@ const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
-                className="input input-bordered focus:outline-none focus:ring-2 transition-all"
-                style={{
-                  backgroundColor: "#1D1D1D",
-                  color: "#ADFF00",
-                  borderColor: "#ADFF00",
-                }}
+                className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                  darkMode ? "text-gray-400" : "text-black"
+                }`}
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="btn btn-xs absolute text-xl  right-12 mt-12"
+                className="btn btn-xs bg-emerald-600 text-gray-200 hover:bg-emerald-700 border-none absolute text-xl  right-12 mt-12"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             <div className="form-control mt-6">
-              <button
-                className="btn btn-primary transition-all"
-                style={{
-                  backgroundColor: "#ADFF00",
-                  color: "#1D1D1D",
-                  border: "none",
-                }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#89F300")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#ADFF00")
-                }
-              >
+              <button className="btn text-white bg-emerald-700 border-none hover:bg-emerald-800">
                 Sign Up
               </button>
-              <p className="mt-4 text-center text-gray-400">
+              <p
+                className={`label-text font-semibold text-center mt-4 ${
+                  darkMode ? "text-gray-400" : "text-black"
+                }`}
+              >
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="font-semibold underline"
-                  style={{ color: "#ADFF00" }}
-                  onMouseOver={(e) => (e.target.style.color = "#89F300")}
-                  onMouseOut={(e) => (e.target.style.color = "#ADFF00")}
+                  className="font-semibold underline text-emerald-700"
                 >
                   Login
                 </Link>

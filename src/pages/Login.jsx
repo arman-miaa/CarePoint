@@ -76,7 +76,11 @@ const Login = () => {
             >
               Welcome Back!
             </h1>
-            <p className={`text-lg w-4/5 mx-auto ${darkMode ? "text-gray-400" : "text-black"}`}>
+            <p
+              className={`text-lg w-4/5 mx-auto ${
+                darkMode ? "text-gray-400" : "text-black"
+              }`}
+            >
               Login to your account to explore amazing game reviews and
               features.
             </p>
@@ -100,7 +104,9 @@ const Login = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="input input-bordered transition-all focus:outline-none focus:ring-2"
+                  className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                   required
                 />
               </div>
@@ -120,7 +126,9 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
-                  className="input input-bordered transition-all focus:outline-none focus:ring-2"
+                  className={`input  border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+                    darkMode ? "text-gray-400" : "text-black"
+                  }`}
                   required
                 />
               </div>
@@ -137,11 +145,10 @@ const Login = () => {
 
               {/* Google Login */}
               <div className="text-center mt-4">
-              
                 <button
                   type="button"
                   onClick={handleSignInUserWithGoogle}
-                  className="relative  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                  className={`relative  py-2 px-4  bg-transparent isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold ${darkMode ? 'text-white':'text-black'}   rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
                 >
                   Login with Google
                 </button>
@@ -157,7 +164,6 @@ const Login = () => {
                 <Link
                   to="/signup"
                   className="font-semibold underline text-emerald-700"
-                 
                 >
                   Register
                 </Link>
