@@ -7,10 +7,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import { axiosInstance } from "../hooks/useAxiosSecure";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const AddVolunteerNeedPostPage = () => {
   const { user } = useContext(AuthContext);
   // console.log(user);
+    const { darkMode } = useTheme();
+  
 
   const [deadline, setDeadline] = useState(new Date());
   const handleDateChange = (date) => {
@@ -49,6 +52,7 @@ const AddVolunteerNeedPostPage = () => {
       .then((res) => {
         // console.log(res.data)
         toast.success("Added on database successfully!");
+        form.reset();
       })
       .catch((error) => {
         console.log("ERROR", error);
@@ -56,48 +60,91 @@ const AddVolunteerNeedPostPage = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-5 bg-white rounded shadow">
+    <div
+      className={`max-w-3xl  mx-auto mt-10 p-6 ${
+        darkMode
+          ? "bg-transparent border-2 border-emerald-700 rounded-xl"
+          : "bg-base-200"
+      } rounded shadow`}
+    >
       <Helmet>
         <title>Add Volunteer Need Post Page || CarePoint</title>
       </Helmet>
-      <h1 className="text-2xl font-bold text-center mb-6">
+      <h1
+        className={` text-2xl mt-4 md:text-3xl text-center lg:text-5xl font-bold mb-4 text-emerald-700 ${
+          darkMode ? "" : ""
+        }`}
+      >
         Add Volunteer Need Post
       </h1>
       <form onSubmit={handleSubmitForm} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Thumbnail</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Thumbnail
+          </label>
           <input
             type="url"
             name="thumbnail"
             placeholder="Enter image URL"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Post Title</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Post Title
+          </label>
           <input
             type="text"
             name="title"
             placeholder="Enter post title"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Description</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Description
+          </label>
           <textarea
             name="description"
             placeholder="Enter description"
-            className="textarea textarea-bordered w-full resize-none"
+            // className="textarea textarea-bordered w-full resize-none"
+            className={`input w-full resize-none textarea  mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           ></textarea>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Category</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Category
+          </label>
           <select
             name="category"
-            className="select select-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400 bg-gray-700" : "text-black"
+            }`}
             required
           >
             <option value="" disabled>
@@ -110,39 +157,65 @@ const AddVolunteerNeedPostPage = () => {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Location</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Location
+          </label>
           <input
             type="text"
             name="location"
             placeholder="Enter location"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             No. of Volunteers Needed
           </label>
           <input
             type="number"
             name="volunteers"
             placeholder="Enter number"
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Deadline</label>
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
+            Deadline
+          </label>
           <DatePicker
             selected={deadline}
             onChange={handleDateChange}
-            className="input input-bordered w-full"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
             dateFormat="yyyy-MM-dd"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             Organizer Name
           </label>
           <input
@@ -150,11 +223,17 @@ const AddVolunteerNeedPostPage = () => {
             name="userName"
             value={user?.displayName}
             readOnly
-            className="input input-bordered w-full bg-gray-200"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label
+            className={`label-text font-semibold ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
+          >
             Organizer Email
           </label>
           <input
@@ -162,14 +241,16 @@ const AddVolunteerNeedPostPage = () => {
             name="userEmail"
             value={user?.email}
             readOnly
-            className="input input-bordered w-full bg-gray-200"
+            className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              darkMode ? "text-gray-400" : "text-black"
+            }`}
           />
         </div>
         <button
           type="submit"
-          className="relative w-full  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+          className={`relative w-full  py-2 px-4  ${darkMode ? 'bg-transparent text-white':'bg-transparent text-black'} isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
         >
-         Add Post
+          Add Post
         </button>
       </form>
     </div>

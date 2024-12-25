@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const MainLayout = () => {
+    const { darkMode, toggleTheme } = useTheme();
+  
     return (
       <div>
-        <div>
+        <div className={`${darkMode ? "bg-[#1a2433]" : ""}`}>
           <Navbar></Navbar>
         </div>
 
