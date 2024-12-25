@@ -74,12 +74,18 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className={`menu  menu-sm dropdown-content ${
+              darkMode ? "bg-gray-600 " : "bg-base-100"
+            } rounded-box z-[1] mt-3 w-52 p-2 shadow`}
           >
             {links}
           </ul>
         </div>
-        <a className=" text-xl cursor-pointer font-semibold hover:font-bold ">
+        <a
+          className={`text-xl cursor-pointer font-semibold hover:font-bold ${
+            darkMode ? "text-emerald-700" : ""
+          }`}
+        >
           <span className="text-blue-208 text-2xl">C</span>arePoint
           <span className="text-mainColor">.</span>
         </a>
@@ -173,16 +179,27 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end gap-2">
-          <Link to="/login">
-            <button className="relative  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? "bg-emerald-700 rounded-xl text-white" : ""
+            }
+          >
+            <button className="relative py-2 px-4   isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
               Login
             </button>
-          </Link>
-          <Link to="/signUp">
-            <button className="relative  py-2 px-4  bg-white isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold text-black    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+          </NavLink>
+
+          <NavLink
+            to="/signUp"
+            className={({ isActive }) =>
+              isActive ? "bg-emerald-700 rounded-xl text-white" : ""
+            }
+          >
+            <button className="relative py-2 px-4 isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold  rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
               Register
             </button>
-          </Link>
+          </NavLink>
         </div>
       )}
     </div>
