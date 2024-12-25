@@ -6,11 +6,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import useAxiosSequre from "../hooks/useAxiosSecure";
 
-const BeAVolunteer = () => {
+const UpdatePage = () => {
   const { user } = useContext(AuthContext);
   const updatePost = useLoaderData();
   console.log(updatePost);
+  const axiosInstance = useAxiosSequre();
   // Check if the response contains the "Unauthorized access1" message
   // if (updatePost?.message === "Unauthorized access1") {
   //   toast.error("Your token or email is invalid");
@@ -63,8 +65,8 @@ const BeAVolunteer = () => {
       organizerEmail,
     };
 
-    axios
-      .patch(`http://localhost:5000/updatePost/${_id}`, updateData, {
+    axiosInstance
+      .patch(`/updatePost/${_id}`, updateData, {
         withCredentials: true,
       })
       .then((res) => {
@@ -207,4 +209,4 @@ const BeAVolunteer = () => {
   );
 };
 
-export default BeAVolunteer;
+export default UpdatePage;

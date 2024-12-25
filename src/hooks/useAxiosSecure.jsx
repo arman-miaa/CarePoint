@@ -1,45 +1,43 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
-// import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { toast } from "react-toastify";
 
-const axiosInstance = axios.create({
+
+export const axiosInstance = axios.create({
   baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 
+
 const useAxiosSequre = () => {
-    const { logOutUser } = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { logOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        axiosInstance.interceptors.response.use(response => {
-            return response;
-        }, error => {
-            console.log('error caught in interceptor', error.status);
+  useEffect(() => {
+    axiosInstance.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          logOutUser()
+            .then(() => {
+              if (error.response?.status === 401) {
+                toast.error("Unauthorized Access! Please log in again.");
+              } else if (error.response?.status === 403) {
+                toast.error("Access denied! Permission required.");
+              }
+              navigate("/login");
+             
+            })
+            .catch((err) => console.error("Logout error:", err));
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, [logOutUser, navigate]);
 
-            if (error.status === 401 || error.status === 403) {
-                console.log('need to logout the user');
-                logOutUser()
-                  .then(() => {
-                    console.log("logged out user");
-                    toast.success("logged out user successfully,");
-                    navigate("/login");
-                  })
-                  .catch((error) => console.log(error));
-            }
-
-
-
-            return Promise.reject(error)
-        })
-    },[])
-
-    return axiosInstance;
-
-    
+  return axiosInstance;
 };
 
 export default useAxiosSequre;

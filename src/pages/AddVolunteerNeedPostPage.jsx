@@ -6,6 +6,7 @@ import { AuthContext } from "../hooks/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import { axiosInstance } from "../hooks/useAxiosSecure";
 
 const AddVolunteerNeedPostPage = () => {
   const { user } = useContext(AuthContext);
@@ -43,8 +44,8 @@ const AddVolunteerNeedPostPage = () => {
       organizerEmail,
     };
     console.log(postData);
-    axios
-      .post("http://localhost:5000/volunteerPosts", postData,{withCredentials:true})
+    axiosInstance
+      .post("/volunteerPosts", postData,)
       .then((res) => {
         // console.log(res.data)
         toast.success("Added on database successfully!");

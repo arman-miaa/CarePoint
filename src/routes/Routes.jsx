@@ -12,6 +12,7 @@ import BeAVolunteer from "../pages/BeAVolunteer";
 import ErrorPage from "../pages/ErrorPage";
 
 import UpdatePage from "../pages/UpdatePage";
+import { axiosInstance } from "../hooks/useAxiosSecure";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,28 +40,40 @@ const router = createBrowserRouter([
         path: "detailsPage/:id",
         element: (
           <Private>
-            <DetailsPage></DetailsPage>
+            <DetailsPage />
           </Private>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
-            method: 'GET',
-            credentials:"include",
-          }),
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosInstance.get(
+              `/volunteerPosts/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            console.error("Error occurred in loader:", error);
+            throw error;
+          }
+        },
       },
 
       {
         path: "beAVolunteer/:id",
         element: (
           <Private>
-            <BeAVolunteer></BeAVolunteer>
+            <BeAVolunteer />
           </Private>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
-            method: "GET",
-            credentials:"include",
-          }),
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosInstance.get(
+              `/volunteerPosts/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            console.error("Error occurred in loader:", error);
+            throw error;
+          }
+        },
       },
 
       {
@@ -72,20 +85,25 @@ const router = createBrowserRouter([
         ),
       },
 
-  {
-  path: "updatePost/:id",
-  element: (
-    <Private>
-      <UpdatePage></UpdatePage>
-    </Private>
-  ),
-  loader: ({ params }) =>
-    fetch(`http://localhost:5000/volunteerPosts/${params.id}`, {
-      method: 'GET', 
-      credentials: "include", 
-    }),
-},
-
+      {
+        path: "updatePost/:id",
+        element: (
+          <Private>
+            <UpdatePage />
+          </Private>
+        ),
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosInstance.get(
+              `/volunteerPosts/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            console.error("Error occurred in loader:", error);
+            throw error;
+          }
+        },
+      },
 
       {
         path: "login",

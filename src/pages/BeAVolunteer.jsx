@@ -2,13 +2,15 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../hooks/AuthProvider";
 import DatePicker from "react-datepicker";
-import axios from "axios";
+// import axios from "axios";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import useAxiosSequre from "../hooks/useAxiosSecure";
 
 const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosInstance = useAxiosSequre();
 
   const details = useLoaderData();
   // Check if the response contains the "Unauthorized access1" message
@@ -68,8 +70,8 @@ const BeAVolunteer = () => {
       postId: details._id,
     };
     console.log(postData);
-    axios
-      .post("http://localhost:5000/volunteerRequests", postData, {
+    axiosInstance
+      .post("/volunteerRequests", postData, {
         withCredentials: true,
       })
       .then((res) => {

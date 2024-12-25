@@ -61,7 +61,9 @@ const AuthProvider = ({ children }) => {
 
   // logout suer
   const logOutUser = () => {
+    console.log('logout')
     return signOut(auth);
+    
   };
 
   const updateUserProfile = (updateData) => {

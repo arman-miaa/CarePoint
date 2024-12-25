@@ -4,17 +4,22 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../pages/Loading";
+import useAxiosSequre from "../hooks/useAxiosSecure";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const MyVolunteerRequestPost = () => {
   const { user } = useContext(AuthContext);
   const [mypost, setMypost] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxiosSequre();
+
 
   // console.log(mypost);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myRequestPost/${user.email}`,{withCredentials:true})
+    axiosInstance
+      .get(`/myRequestPost/${user.email}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setMypost(res.data);
         setLoading(false);
@@ -37,8 +42,10 @@ const MyVolunteerRequestPost = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("clicked delete", id);
-        axios
-          .delete(`http://localhost:5000/deleteRequest/${id}`,{withCredentials:true})
+        axiosInstance
+          .delete(`/deleteRequest/${id}`, {
+           
+          })
           .then((res) => {
             console.log(res.data);
             if (res.data.deletedCount > 0) {

@@ -1,8 +1,30 @@
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
+import { axiosInstance } from "../hooks/useAxiosSecure";
 
 const DetailsPage = () => {
-  const details = useLoaderData();
+  // const details = useLoaderData();
+  const [details, setDetails] = useState('');
+  console.log(details);
+  const {id} = useParams();
+  console.log(id);
+
+  useEffect(() => {
+    axiosInstance
+      .get(`/volunteerPosts/${id}`,{
+        
+      })
+      .then((res) => {
+        setDetails(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+        setLoading(false);
+      });
+  }, [id]);
+
   const {
     _id,
     thumbnail,
