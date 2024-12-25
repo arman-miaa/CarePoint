@@ -14,7 +14,11 @@ const Footer = () => {
     >
       <footer className="footer container mx-auto text-base-content p-10">
         <nav className={`${darkMode ? "text-gray-400" : ""}  mx-auto md:mx-0`}>
-          <h6 className="footer-title text-xl text-emerald-400 font-bold">
+          <h6
+            className={`footer-title text-xl ${
+              darkMode ? "text-emerald-400" : "text-black underline"
+            } font-bold`}
+          >
             Services
           </h6>
           <a className="link link-hover">Branding</a>
@@ -24,7 +28,11 @@ const Footer = () => {
         </nav>
 
         <nav className={`${darkMode ? "text-gray-400" : ""} mx-auto md:mx-0`}>
-          <h6 className="footer-title text-xl text-emerald-400 font-bold">
+          <h6
+            className={`footer-title text-xl ${
+              darkMode ? "text-emerald-400" : "text-black underline"
+            } font-bold`}
+          >
             Company
           </h6>
           <a className="link link-hover">About Us</a>
@@ -35,7 +43,11 @@ const Footer = () => {
 
         {/* Volunteers Section */}
         <nav className={`${darkMode ? "text-gray-400" : ""} mx-auto md:mx-0`}>
-          <h6 className="footer-title text-xl text-emerald-400 font-bold">
+          <h6
+            className={`footer-title text-xl ${
+              darkMode ? "text-emerald-400" : "text-black underline"
+            } font-bold`}
+          >
             Volunteers
           </h6>
           <Link to="/volunteers" className="link link-hover">

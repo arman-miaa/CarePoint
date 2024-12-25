@@ -3,10 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import Loading from "../pages/Loading";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../hooks/AuthProvider";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+    const { darkMode } = useTheme();
 
   // console.log(volunteerPosts);
 
@@ -28,13 +30,21 @@ const VolunteerNeeds = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="mt-12">
+        <div className="mt-12 lg:mt-16">
           {/* title and description */}
           <div className="text-center">
-            <h2 className="text-xl text-black font-bold md:text-2xl lg:text-3xl">
+            <h2
+              className={` text-2xl mt-4 md:text-3xl text-center lg:text-5xl font-bold mb-4 text-emerald-700 ${
+                darkMode ? "" : ""
+              }`}
+            >
               Urgent Volunteer Opportunities
             </h2>
-            <p className="w-1/2 mx-auto mt-4">
+            <p
+              className={`label-text md:w-1/2 mx-4 md:mx-auto mt-2 font-semibold ${
+                darkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               Discover the most urgent volunteer opportunities with approaching
               deadlines. Join hands to make an impact today by exploring these
               highlighted posts.
@@ -44,18 +54,28 @@ const VolunteerNeeds = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {volunteerPosts.map((volunteerPost) => (
               <div key={volunteerPost._id}>
-                <div className="card card-compact bg-base-100  shadow-xl">
+                <div className="card card-compact bg-base-200  shadow-xl">
                   <figure>
-                    <img
+                    <img className="rounded-xl w-full h-[300px] object-cover"
                       src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
                       alt="Shoes"
                     />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title">{volunteerPost.title}</h2>
-                    <p>Category: {volunteerPost.category}</p>
-                    <p>
-                      Deadline:{" "}
+                    <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
+                      {volunteerPost.title}
+                    </h2>
+                    <p className="font-semibold md:text-lg">
+                      <span className="font-semibold md:text-xl">
+                        Category:{" "}
+                      </span>
+                      {volunteerPost.category}
+                    </p>
+                    <p className="font-semibold md:text-lg">
+                      <span className="font-semibold md:text-xl">
+                        Deadline:{" "}
+                      </span>
+
                       {new Date(volunteerPost.postDeadline).toLocaleDateString(
                         "en-US",
                         {

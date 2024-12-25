@@ -4,6 +4,7 @@ import { AuthContext } from "../hooks/AuthProvider";
 import { toast } from "react-toastify";
 import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import { useTheme } from "../hooks/ThemeProvider ";
+import userIcon from "../assets/user-icon.jpg";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -111,11 +112,13 @@ const Navbar = () => {
           {/* User Image */}
           <img
             className="w-16 h-16 border-2 rounded-full cursor-pointer"
-            src={user.photoURL}
+            src={user.photoURL || userIcon}
             alt="User Profile"
+            onError={(e) => (e.target.src = userIcon)}
             onMouseEnter={() => setIsHovered(true)}
             // onMouseLeave={() => setIsHovered(false)}
           />
+      
 
           <div>
             <button
@@ -132,7 +135,9 @@ const Navbar = () => {
           {dropdown && (
             <div
               className={`fixed top-20  ${
-                darkMode ? "bg-transparent border-2 border-emerald-700" : ""
+                darkMode
+                  ? "bg-gray-800 border-2 border-emerald-700"
+                  : "bg-white"
               } rounded-xl`}
             >
               <div className="  flex-col   gap-2 p-4 rounded-xl  flex justify-center items-center shadow-xl">
@@ -169,7 +174,11 @@ const Navbar = () => {
             <div
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className={`absolute top-20 right-10 w-48 ${darkMode ? 'bg-transparent border-2 border-emerald-700':''} shadow-lg rounded-lg p-3`}
+              className={`absolute top-20 right-10 w-48 ${
+                darkMode
+                  ? "bg-gray-800 border-2 border-emerald-700"
+                  : "bg-white"
+              } shadow-lg rounded-lg p-3`}
             >
               <p className="text-sm md:text-xl text-center font-medium  mb-2">
                 {user.displayName}

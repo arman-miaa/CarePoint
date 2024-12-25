@@ -16,7 +16,7 @@ const Banner = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 200000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -29,17 +29,21 @@ const Banner = () => {
         {/* First Slide */}
         <SwiperSlide>
           <div className="w-full h-[550px] relative">
-            <img className="w-full h-full object-cover" src={banner2} alt="" />
+            <img
+              className="w-full h-full object-cover rounded-xl mt-8"
+              src={banner2}
+              alt=""
+            />
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white px-6">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                Empower Change through Volunteering
+              <h1 className="text-4xl md:text-5xl text-gray-400 font-bold mb-4 leading-tight">
+                Volunteer to Empower
               </h1>
-              <p className="text-lg mb-6 opacity-90">
+              <p className="text-lg mb-6 text-gray-400">
                 Your time can transform lives. Join us today and make an impact!
               </p>
               <button
                 type="submit"
-                className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg  bg-white text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                className="flex justify-center border-emerald-700 gap-2 items-center mx-auto shadow-xl text-lg  bg-gray-300 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
               >
                 Explore More!
                 <svg
@@ -60,17 +64,21 @@ const Banner = () => {
         {/* Second Slide */}
         <SwiperSlide>
           <div className="w-full h-[550px] relative">
-            <img className="w-full h-full object-cover" src={banner1} alt="" />
+            <img
+              className="w-full h-full object-cover rounded-xl mt-8"
+              src={banner1}
+              alt=""
+            />
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white px-6">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                Make a Real Impact in Your Community
+              <h1 className="text-4xl text-gray-300 md:text-5xl font-bold mb-4 leading-tight">
+                Create Community Impact
               </h1>
-              <p className="text-lg mb-6 opacity-90">
+              <p className="text-lg mb-6 text-white font-bold">
                 Volunteer with us and help build a better tomorrow.
               </p>
               <button
                 type="submit"
-                className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg  bg-white text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-white before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group "
+                className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg  bg-gray-300 border-emerald-700 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-white before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group "
               >
                 Explore More!
                 <svg
@@ -91,18 +99,22 @@ const Banner = () => {
         {/* Third Slide */}
         <SwiperSlide>
           <div className="w-full h-[550px] relative">
-            <img className="w-full h-full object-cover" src={banner3} alt="" />
+            <img
+              className="w-full h-full object-cover rounded-xl mt-8"
+              src={banner3}
+              alt=""
+            />
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white px-6">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                Be the Change You Want to See
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-300">
+                Be the Change
               </h1>
-              <p className="text-lg mb-6 opacity-90">
+              <p className="text-lg mb-6 text-gray-200">
                 Your passion can inspire others. Join hands with us and create
                 change.
               </p>
               <button
                 type="submit"
-                className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg  bg-white text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-white before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group "
+                className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg  bg-gray-300 border-emerald-700 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-white before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group "
               >
                 Explore More!
                 <svg

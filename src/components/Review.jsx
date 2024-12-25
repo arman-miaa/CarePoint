@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "../hooks/ThemeProvider ";
 
 const reviews = [
 
@@ -30,15 +31,31 @@ const reviews = [
 
 
 const Review = () => {
+    const { darkMode } = useTheme();
+  
   return (
-    <div className="bg-base-200 py-12 pb-20 mt-12">
+    <div
+      className={` py-12 pb-20 mt-12 ${
+        darkMode
+          ? "border-emerald-700 border-2 rounded-xl"
+          : "bg-base-200 rounded-xl"
+      }`}
+    >
       {/* Header Section */}
       <div className="text-center md:w-1/2 mx-auto mb-8">
-        <h1 className="text-3xl font-semibold mb-4">
+        <h1
+          className={` text-2xl mt-4 md:text-3xl text-center lg:text-5xl font-bold mb-4 text-emerald-700 ${
+            darkMode ? "" : ""
+          }`}
+        >
           Volunteer Voices
           {/* : Real Stories from Our Heroes */}
         </h1>
-        <p className="text-gray-600">
+        <p
+          className={`label-text font-semibold ${
+            darkMode ? "text-gray-400" : "text-black"
+          }`}
+        >
           Read inspiring reviews from our volunteers about their experiences,
           challenges, and the impact they've made in the community.
         </p>
@@ -57,7 +74,7 @@ const Review = () => {
               className="w-20 h-20 rounded-full object-cover mb-4"
             />
 
-            <h2 className="text-xl font-semibold capitalize">
+            <h2 className="text-xl text-emerald-700 font-semibold capitalize">
               {review.reviewer_name}
             </h2>
 
