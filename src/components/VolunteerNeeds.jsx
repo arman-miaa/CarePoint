@@ -14,7 +14,7 @@ const VolunteerNeeds = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/volunteerPosts")
+      .get("https://ph-assignment-11-server-brown.vercel.app/volunteerPosts")
       .then((res) => {
         setVolunteerPosts(res.data);
         setLoading(false);

@@ -7,7 +7,6 @@ import notFound from '../assets/not-found.png'
 import Loading from "./Loading";
 import { toast } from "react-toastify";
 import { AuthContext } from "../hooks/AuthProvider";
-import { div } from "motion/react-client";
 
 const DetailsPage = () => {
   // const details = useLoaderData();
@@ -19,8 +18,7 @@ const DetailsPage = () => {
   const [loading, setLoading] = useState(true);
   
   const { user } = useContext(AuthContext);
-  console.log(user.email);
-  console.log(details.organizerEmail);
+
   
 
 
