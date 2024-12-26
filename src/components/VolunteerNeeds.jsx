@@ -59,7 +59,7 @@ const VolunteerNeeds = () => {
                 <div className="card h-full card-compact bg-base-200  shadow-xl">
                   <figure>
                     <img
-                      className="w-full h-48 object-cover rounded-xl" 
+                      className="w-full h-[210px] lg:h-56 object-cover rounded-xl" 
                       src={
                         volunteerPost?.thumbnail
                           ? volunteerPost?.thumbnail

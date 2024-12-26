@@ -21,7 +21,7 @@ const useAxiosSequre = () => {
           logOutUser()
             .then(() => {
               if (error.response?.status === 401) {
-                toast.error("Unauthorized Access! Please log in again.");
+                toast.error("Unauthorized Access! Please log in then try.");
               } else if (error.response?.status === 403) {
                 toast.error("Access denied! Permission required.");
               }

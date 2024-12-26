@@ -100,7 +100,7 @@ const SignUp = () => {
                 darkMode ? "text-gray-400" : "text-black"
               }`}
             >
-              Create an account to unlock amazing game reviews and features.
+              Sign up to join and explore exciting volunteer opportunities
             </p>
           </div>
 

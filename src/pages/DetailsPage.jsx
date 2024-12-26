@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { axiosInstance } from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
+import notFound from '../assets/not-found.png'
 
 const DetailsPage = () => {
   // const details = useLoaderData();
@@ -74,9 +75,10 @@ const DetailsPage = () => {
           }`}
         >
           <img
-            className="h-full w-full border-2 object-cover rounded-xl"
-            src={thumbnail}
+            className="h-96 w-full border-2 object-cover rounded-xl"
+            src={thumbnail || notFound}
             alt="Opportunity Thumbnail"
+            onError={(e) => (e.target.src = notFound)}
           />
         </figure>
         <div className="flex-1">
@@ -90,48 +92,33 @@ const DetailsPage = () => {
             }`}
           >
             <span
-              className={`label-text md:w-1/2 mx-4 md:mx-auto mt-2 text-lg font-semibold ${
+              className={` md:w-1/2 mx-4 md:mx-auto mt-2  ${
                 darkMode ? "text-gray-400" : "text-black"
               }`}
-            >
-              Description:
-            </span>{" "}
+            ></span>{" "}
             {description}
           </p>
-          <p
-            className={`font-semibold  mt-2 ${
-              darkMode ? "text-gray-400" : "text-black"
-            }`}
-          >
-            <span className="text-[17px]">Category:</span> {category}
+          <p className={`  mt-2 ${darkMode ? "text-gray-400" : "text-black"}`}>
+            <span className="text-[17px] font-bold">Category:</span> {category}
           </p>
-          <p
-            className={`font-semibold ${
-              darkMode ? "text-gray-400" : "text-black"
-            }`}
-          >
-            <span className="text-[17px]">Location:</span> {location}
+          <p className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
+            <span className="text-[17px] font-bold">Location:</span> {location}
           </p>
-          <p
-            className={`font-semibold ${
-              darkMode ? "text-gray-400" : "text-black"
-            }`}
-          >
-            <span className="text-[17px]">Deadline:</span> {postDeadline}
+          <p className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
+            <span className="text-[17px] font-bold">Deadline:</span>{" "}
+            {postDeadline}
           </p>
-          <p
-            className={`font-semibold  ${
-              darkMode ? "text-gray-400" : "text-black"
-            }`}
-          >
-            <span className="text-[17px]">Volunteer Needed: </span>
-            <span className={volunteers === 0 ? "text-red-500" : ""}>
+          <p className={`  ${darkMode ? "text-gray-400" : "text-black"}`}>
+            <span className="text-[17px] font-bold">Volunteer Needed: </span>
+            <span
+              className={volunteers === 0 ? "text-red-500" : "text-emerald-700"}
+            >
               {volunteers}
             </span>
           </p>
           <p className="font-semibold text-emerald-600 mt-2 ">
             <span
-              className={`${
+              className={`text-[17px] font-bold ${
                 darkMode
                   ? "text-gray-400 text-[17px]"
                   : "text-black text-[17px]"
@@ -144,7 +131,7 @@ const DetailsPage = () => {
           <p className="font-semibold text-emerald-600">
             {" "}
             <span
-              className={`${
+              className={`text-[17px] font-bold ${
                 darkMode
                   ? "text-gray-400 text-[17px]"
                   : "text-[17px] text-black"
@@ -163,7 +150,7 @@ const DetailsPage = () => {
             ) : (
               <Link to={`/beAVolunteer/${_id}`}>
                 <button className="inline-flex  outline-none w-full text-center mx-auto justify-center items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
-                Be A Volunteer
+                  Be A Volunteer
                 </button>
               </Link>
             )}

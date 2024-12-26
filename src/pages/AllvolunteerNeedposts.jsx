@@ -64,14 +64,19 @@ const AllvolunteerNeedposts = () => {
             {/* Grid Icon for Card Layout */}
             <button
               onClick={() => setLayout("card")}
-              className="btn bg-emerald-700 border-none mr-2"
+              className={`btn border-none mr-2 ${
+                layout === "card" ? "bg-emerald-700" : "bg-gray-300 hover:bg-emerald-700"
+              }`}
             >
               <FaTh size={24} />
             </button>
+
             {/* Table Icon for Table Layout */}
             <button
               onClick={() => setLayout("table")}
-              className="btn bg-emerald-700 border-none"
+              className={`btn border-none mr-2 ${
+                layout === "table" ? "bg-emerald-700" : "bg-gray-300 hover:bg-emerald-700"
+              }`}
             >
               <FaTable size={24} />
             </button>
@@ -95,7 +100,7 @@ const AllvolunteerNeedposts = () => {
                         src={volunteerPost.thumbnail || notFound}
                         alt="Image Not Found"
                         onError={(e) => (e.target.src = notFound)}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-[210px] object-cover"
                       />
                     </figure>
                     <div className="card-body p-4">

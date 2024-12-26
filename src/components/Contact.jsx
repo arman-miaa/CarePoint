@@ -47,7 +47,7 @@ const Contact = () => {
             darkMode ? "" : ""
           }`}
         >
-          Reach Out to Us!
+          Reach Out to US! 
         </h1>
         <p className="max-w-xl mx-auto text-[gray] text-xl">
           Have something on your mind? Drop us a message, and we’ll get back to

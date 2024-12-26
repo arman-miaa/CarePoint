@@ -117,6 +117,7 @@ const BeAVolunteer = () => {
             type="url"
             defaultValue={thumbnail}
             name="thumbnail"
+            readOnly
             placeholder="Enter image URL"
             className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
               darkMode ? "text-gray-400" : "text-black"
@@ -135,6 +136,7 @@ const BeAVolunteer = () => {
           <input
             type="text"
             name="title"
+            readOnly
             defaultValue={title}
             placeholder="Enter post title"
             className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
@@ -153,6 +155,7 @@ const BeAVolunteer = () => {
           </label>
           <textarea
             name="description"
+            readOnly
             defaultValue={description}
             placeholder="Enter description"
             // className="textarea textarea-bordered w-full resize-none"
@@ -222,7 +225,7 @@ const BeAVolunteer = () => {
         </div>
         <div>
           <label
-            className={`label-text font-semibold ${
+            className={`label-text font-semibold mr-1 ${
               darkMode ? "text-gray-400" : "text-black"
             }`}
           >
@@ -289,7 +292,7 @@ const BeAVolunteer = () => {
               name="volunteerName"
               defaultValue={user?.displayName}
               readOnly
-              className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+              className={`input w-full my-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
                 darkMode ? "text-gray-400" : "text-black"
               }`}
             />

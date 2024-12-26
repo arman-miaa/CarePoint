@@ -185,6 +185,7 @@ const AddVolunteerNeedPostPage = () => {
           <input
             type="number"
             name="volunteers"
+            min={1}
             placeholder="Enter number"
             className={`input w-full mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
               darkMode ? "text-gray-400" : "text-black"
@@ -194,7 +195,7 @@ const AddVolunteerNeedPostPage = () => {
         </div>
         <div>
           <label
-            className={`label-text font-semibold ${
+            className={`label-text font-semibold mr-1 ${
               darkMode ? "text-gray-400" : "text-black"
             }`}
           >
@@ -207,6 +208,7 @@ const AddVolunteerNeedPostPage = () => {
               darkMode ? "text-gray-400" : "text-black"
             }`}
             dateFormat="yyyy-MM-dd"
+            minDate={new Date()}
             required
           />
         </div>
