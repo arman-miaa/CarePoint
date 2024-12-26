@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import Loading from "../pages/Loading";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -36,7 +37,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currectUser) => {
       setUser(currectUser);
-      console.log("state captured", currectUser?.email);
+     
       if (currectUser?.email) {
         const user = { email: currectUser?.email };
         axios
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            console.log("log in", res.data);
+            
             setLoader(false);
           });
       } else {
@@ -55,7 +56,8 @@ const AuthProvider = ({ children }) => {
             { withCredentials: true }
           )
           .then((res) => {
-            console.log("logout ", res.data);
+                  
+           
             setLoader(false);
           });
       }
@@ -67,7 +69,7 @@ const AuthProvider = ({ children }) => {
 
   // logout suer
   const logOutUser = () => {
-    console.log("logout");
+    
     return signOut(auth);
   };
 

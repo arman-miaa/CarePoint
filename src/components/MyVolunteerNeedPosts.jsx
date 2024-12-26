@@ -8,6 +8,7 @@ import useAxiosSequre from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 import notFound from "../assets/not-found.png";
+import { toast } from "react-toastify";
 
 
 const MyVolunteerNeedPosts = () => {
@@ -17,7 +18,6 @@ const MyVolunteerNeedPosts = () => {
   const axiosInstance = useAxiosSequre();
   const { darkMode } = useTheme();
 
-  // console.log(mypost);
   useEffect(() => {
     axiosInstance
       .get(`/myPost/${user.email}`, {
@@ -28,7 +28,7 @@ const MyVolunteerNeedPosts = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("ERROR", error);
+       toast.warn("Data loading failed!");
         setLoading(false);
       });
   }, [user.email]);
@@ -44,13 +44,13 @@ const MyVolunteerNeedPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("clicked delete", id);
+       
         axiosInstance
           .delete(`/deletePost/${id}`, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data);
+           
             if (res.data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -63,7 +63,8 @@ const MyVolunteerNeedPosts = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+                   toast.warn("Data deleting failed!");
+
           });
       }
     });
@@ -144,16 +145,16 @@ const MyVolunteerNeedPosts = () => {
                       </td>
                       <td className="text-lg font-medium">{post.title}</td>
                       <td className="text-lg font-medium">{post.location}</td>
-                      <td className="flex gap-2 flex-col md:flex-row items-center justify-center">
+                      <td className=" space-y-2 md:space-y-0 md:space-x-2 ">
                         <Link to={`/updatePost/${post._id}`}>
-                          <button className="inline-flex items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
+                          <button className="inline-flex items-center md:px-4 p-[6px] md:py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
                             Update
                           </button>
                         </Link>
 
                         <button
                           onClick={() => handleDelete(post._id)}
-                          className="inline-flex items-center px-4 py-2 bg-red-600 transition-all duration-300 ease-in-out hover:bg-red-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105"
+                          className="inline-flex items-center md:px-4 p-[6px] md:py-2 bg-red-600 transition-all duration-300 ease-in-out hover:bg-red-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105"
                         >
                           Delete
                         </button>

@@ -11,7 +11,7 @@ import { useTheme } from "../hooks/ThemeProvider ";
 
 const AddVolunteerNeedPostPage = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user);
+
     const { darkMode } = useTheme();
   
 
@@ -33,7 +33,7 @@ const AddVolunteerNeedPostPage = () => {
     const organizerName = form.userName.value;
     const organizerEmail = form.userEmail.value;
 
-    // console.log(thumbnail, title, description, category, location, volunteers, postDeadline, organizerName, organizerEmail);
+   
 
     const postData = {
       thumbnail,
@@ -46,16 +46,17 @@ const AddVolunteerNeedPostPage = () => {
       organizerName,
       organizerEmail,
     };
-    console.log(postData);
+   
     axiosInstance
       .post("/volunteerPosts", postData,)
       .then((res) => {
-        // console.log(res.data)
+        
         toast.success("Added on database successfully!");
         form.reset();
       })
       .catch((error) => {
-        console.log("ERROR", error);
+               toast.warn("Data added failed!");
+
       });
   };
 

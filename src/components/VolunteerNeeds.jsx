@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 // import { AuthContext } from "../hooks/AuthProvider";
 import { useTheme } from "../hooks/ThemeProvider ";
 import notFound from "../assets/not-found.png";
-
+import { toast } from "react-toastify";
 
 const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { darkMode } = useTheme();
 
-  // console.log(volunteerPosts);
+
 
   useEffect(() => {
     axios
@@ -22,7 +22,8 @@ const VolunteerNeeds = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("ERROR", error);
+              toast.warn("Data loading failed!");
+       
         setLoading(false);
       });
   }, []);
@@ -59,14 +60,14 @@ const VolunteerNeeds = () => {
                 <div className="card h-full card-compact bg-base-200  shadow-xl">
                   <figure>
                     <img
-                      className="w-full h-[210px] lg:h-56 object-cover rounded-xl" 
+                      className="w-full h-[210px] lg:h-56 object-cover rounded-xl"
                       src={
                         volunteerPost?.thumbnail
                           ? volunteerPost?.thumbnail
                           : notFound
-                      } 
+                      }
                       alt="Image Not Found"
-                      onError={(e) => (e.target.src = notFound)} 
+                      onError={(e) => (e.target.src = notFound)}
                     />
                   </figure>
 

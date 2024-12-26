@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { AuthContext } from "../hooks/AuthProvider";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import useAxiosSequre from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
 
 const UpdatePage = () => {
-  const { user } = useContext(AuthContext);
+  
   const updatePost = useLoaderData();
-  console.log(updatePost);
+
   const axiosInstance = useAxiosSequre();
       const { darkMode } = useTheme();
   
@@ -73,12 +73,12 @@ const UpdatePage = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+       
         toast.success("Post updated successfully!");
         navigate("/ManageMyPosts");
       })
       .catch((error) => {
-        console.error("Error updating post:", error);
+       
         toast.error("Failed to update the post.");
       });
   };

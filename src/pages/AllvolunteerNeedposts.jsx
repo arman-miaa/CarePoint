@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import { FaTh, FaTable } from "react-icons/fa";
 import { useTheme } from "../hooks/ThemeProvider ";
-import notFound from '../assets/not-found.png'
+import notFound from "../assets/not-found.png";
 
 const AllvolunteerNeedposts = () => {
   const { user } = useContext(AuthContext);
@@ -65,7 +65,9 @@ const AllvolunteerNeedposts = () => {
             <button
               onClick={() => setLayout("card")}
               className={`btn border-none mr-2 ${
-                layout === "card" ? "bg-emerald-700" : "bg-gray-300 hover:bg-emerald-700"
+                layout === "card"
+                  ? "bg-emerald-700"
+                  : "bg-gray-300 hover:bg-emerald-700"
               }`}
             >
               <FaTh size={24} />
@@ -75,7 +77,9 @@ const AllvolunteerNeedposts = () => {
             <button
               onClick={() => setLayout("table")}
               className={`btn border-none mr-2 ${
-                layout === "table" ? "bg-emerald-700" : "bg-gray-300 hover:bg-emerald-700"
+                layout === "table"
+                  ? "bg-emerald-700"
+                  : "bg-gray-300 hover:bg-emerald-700"
               }`}
             >
               <FaTable size={24} />
@@ -180,10 +184,10 @@ const AllvolunteerNeedposts = () => {
                         : "bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
                     }`}
                   >
-                    <th className="px-4 py-2 text-left hidden md:flex">#</th>
-                    <th className="px-4 py-2 text-left">Image</th>
-                    <th className="px-4 py-2 text-left">Title</th>
-                    <th className="px-4 py-2 text-left flex gap-2 flex-col justify-center ">
+                    <th className="  hidden md:flex">#</th>
+                    <th className="">Image</th>
+                    <th className="">Title</th>
+                    <th className=" flex gap-2 flex-col justify-center ">
                       <span>Volunteer</span>{" "}
                       <span className="hidden md:flex ml-4 -mt-2">Need</span>
                     </th>

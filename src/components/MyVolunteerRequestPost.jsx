@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
-import axios from "axios";
-import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../pages/Loading";
 import useAxiosSequre from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
 import notFound from "../assets/not-found.png";
+import { toast } from "react-toastify";
 
 const MyVolunteerRequestPost = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const MyVolunteerRequestPost = () => {
   const { darkMode } = useTheme();
 
 
-  // console.log(mypost);
+ 
   useEffect(() => {
     axiosInstance
       .get(`/myRequestPost/${user.email}`, {
@@ -28,7 +29,8 @@ const MyVolunteerRequestPost = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("ERROR", error);
+               toast.warn("Data loading failed!");
+        
         setLoading(false);
       });
   }, [user.email]);
@@ -44,13 +46,13 @@ const MyVolunteerRequestPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("clicked delete", id);
+        
         axiosInstance
           .delete(`/deleteRequest/${id}`, {
            
           })
           .then((res) => {
-            console.log(res.data);
+           
             if (res.data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -63,7 +65,8 @@ const MyVolunteerRequestPost = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+                   toast.warn("Data deleting failed!");
+
           });
       }
     });
@@ -144,10 +147,10 @@ const MyVolunteerRequestPost = () => {
                       </td>
                       <td className="text-lg font-medium">{post.title}</td>
                       <td className="text-lg font-medium">{post.location}</td>
-                      <td className="flex gap-2 flex-col md:flex-row items-center justify-center">
+                      <td className=" ">
                         <button
                           onClick={() => handleDelete(post._id)}
-                          className="inline-flex items-center px-8 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
+                          className="inline-flex items-center md:px-6 p-2 md:py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
                         >
                           Censel
                         </button>
