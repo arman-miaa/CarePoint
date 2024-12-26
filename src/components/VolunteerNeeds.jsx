@@ -2,8 +2,10 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Loading from "../pages/Loading";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../hooks/AuthProvider";
+// import { AuthContext } from "../hooks/AuthProvider";
 import { useTheme } from "../hooks/ThemeProvider ";
+import notFound from "../assets/not-found.png";
+
 
 const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
@@ -30,7 +32,7 @@ const VolunteerNeeds = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="mt-12 lg:mt-16">
+        <div id="details" className="mt-12 lg:mt-16">
           {/* title and description */}
           <div className="text-center">
             <h2
@@ -54,14 +56,20 @@ const VolunteerNeeds = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {volunteerPosts.map((volunteerPost) => (
               <div key={volunteerPost._id}>
-                <div className="card card-compact bg-base-200  shadow-xl">
+                <div className="card h-full card-compact bg-base-200  shadow-xl">
                   <figure>
                     <img
-                      className="rounded-xl w-full h-[300px] object-cover"
-                      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                      alt="Shoes"
+                      className="w-full h-48 object-cover rounded-xl" 
+                      src={
+                        volunteerPost?.thumbnail
+                          ? volunteerPost?.thumbnail
+                          : notFound
+                      } 
+                      alt="Image Not Found"
+                      onError={(e) => (e.target.src = notFound)} 
                     />
                   </figure>
+
                   <div className="card-body">
                     <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
                       {volunteerPost.title}
@@ -71,6 +79,12 @@ const VolunteerNeeds = () => {
                         Category:{" "}
                       </span>
                       {volunteerPost.category}
+                    </p>
+                    <p className="font-semibold md:text-lg">
+                      <span className="font-semibold md:text-xl">
+                        Location:{" "}
+                      </span>
+                      {volunteerPost.location}
                     </p>
                     <p className="font-semibold md:text-lg">
                       <span className="font-semibold md:text-xl">
@@ -87,7 +101,7 @@ const VolunteerNeeds = () => {
                       )}
                     </p>
 
-                    <div className="w-full">
+                    <div className="w-full mt-auto">
                       <Link to={`/detailsPage/${volunteerPost._id}`}>
                         <button
                           type="submit"

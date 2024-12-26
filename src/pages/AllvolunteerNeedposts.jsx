@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import { FaTh, FaTable } from "react-icons/fa";
 import { useTheme } from "../hooks/ThemeProvider ";
+import notFound from '../assets/not-found.png'
 
 const AllvolunteerNeedposts = () => {
   const { user } = useContext(AuthContext);
@@ -88,11 +89,12 @@ const AllvolunteerNeedposts = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {volunteerPosts.map((volunteerPost) => (
                 <div key={volunteerPost._id}>
-                  <div className="card card-compact bg-white shadow-lg rounded-lg overflow-hidden">
+                  <div className="card h-full card-compact bg-white shadow-lg rounded-lg overflow-hidden">
                     <figure>
                       <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt={volunteerPost.title}
+                        src={volunteerPost.thumbnail || notFound}
+                        alt="Image Not Found"
+                        onError={(e) => (e.target.src = notFound)}
                         className="w-full h-48 object-cover"
                       />
                     </figure>
@@ -118,7 +120,7 @@ const AllvolunteerNeedposts = () => {
                           }`}
                         >
                           {volunteerPost.volunteers <= 0 ? (
-                            <>{volunteerPost.volunteers} (No needed)</>
+                            <>(No volunteers needed)</>
                           ) : (
                             volunteerPost.volunteers
                           )}
@@ -137,7 +139,7 @@ const AllvolunteerNeedposts = () => {
                           day: "numeric",
                         })}
                       </p>
-                      <div className="mt-4">
+                      <div className="mt-auto">
                         <Link to={`/detailsPage/${volunteerPost._id}`}>
                           <button
                             type="submit"
@@ -173,11 +175,14 @@ const AllvolunteerNeedposts = () => {
                         : "bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
                     }`}
                   >
-                    <th className="px-4 py-2 text-left">#</th>
+                    <th className="px-4 py-2 text-left hidden md:flex">#</th>
                     <th className="px-4 py-2 text-left">Image</th>
                     <th className="px-4 py-2 text-left">Title</th>
-                    <th className="px-4 py-2 text-left">Category</th>
-                    <th className="px-4 py-2 text-left">Deadline</th>
+                    <th className="px-4 py-2 text-left flex gap-2 flex-col justify-center ">
+                      <span>Volunteer</span>{" "}
+                      <span className="hidden md:flex ml-4 -mt-2">Need</span>
+                    </th>
+
                     <th className="px-4 py-2 text-left">Action</th>
                   </tr>
                 </thead>
@@ -187,16 +192,18 @@ const AllvolunteerNeedposts = () => {
                       key={volunteerPost._id}
                       className="transition-all text-black font-bold dark:text-gray-400 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105 cursor-pointer"
                     >
-                      <th className="text-emerald-700 font-bold">
+                      <th className="text-emerald-700 font-bold hidden md:flex">
                         {index + 1}
                       </th>
                       <td>
                         <img
                           className="w-12 h-12 rounded-full object-cover shadow-sm"
-                          src={volunteerPost.thumbnail}
+                          src={volunteerPost.thumbnail || notFound}
                           alt="thumbnail"
+                          onError={(e) => (e.target.src = notFound)}
                         />
                       </td>
+                      <td className=" shadow-sm">{volunteerPost.title}</td>
                       <td
                         className={`px-4 py-2 ${
                           volunteerPost.volunteers <= 0
@@ -205,11 +212,11 @@ const AllvolunteerNeedposts = () => {
                         }`}
                       >
                         {volunteerPost.volunteers <= 0
-                          ? `${volunteerPost.volunteers} (No volunteers needed)`
+                          ? ` (No volunteers needed)`
                           : volunteerPost.volunteers}
                       </td>
 
-                      <td className="px-4 py-2">
+                      {/* <td className="px-4 py-2">
                         {new Date(
                           volunteerPost.postDeadline
                         ).toLocaleDateString("en-US", {
@@ -217,24 +224,11 @@ const AllvolunteerNeedposts = () => {
                           month: "numeric",
                           day: "numeric",
                         })}
-                      </td>
+                      </td> */}
                       <td className="px-4 py-2">
                         <Link to={`/detailsPage/${volunteerPost._id}`}>
-                          <button
-                            type="submit"
-                            className="flex justify-center gap-2 items-center shadow-xl text-lg border-emerald-500 backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:border-none hover:text-gray-300 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                          >
+                          <button className="inline-flex items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
                             View Details
-                            <svg
-                              className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border dark:bg-gray-300 border-gray-700 dark:border-gray-300 group-hover:border-none p-2 rotate-45"
-                              viewBox="0 0 16 19"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
-                                className="fill-gray-800 group-hover:fill-gray-800"
-                              ></path>
-                            </svg>
                           </button>
                         </Link>
                       </td>

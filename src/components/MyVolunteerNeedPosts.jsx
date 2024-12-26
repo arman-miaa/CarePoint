@@ -7,6 +7,8 @@ import Loading from "../pages/Loading";
 import useAxiosSequre from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
 // import { NavLink, Outlet, useLocation } from "react-router-dom";
+import notFound from "../assets/not-found.png";
+
 
 const MyVolunteerNeedPosts = () => {
   const { user } = useContext(AuthContext);
@@ -118,13 +120,15 @@ const MyVolunteerNeedPosts = () => {
                       className={`${
                         index % 2 === 0
                           ? darkMode
-                            ? "bg-custom-gray" // Dark mode even row
-                            : "bg-white" // Light mode even row
+                            ? "bg-custom-gray"
+                            : "bg-white"
                           : darkMode
-                          ? "bg-gray-800" // Dark mode odd row
-                          : "bg-gray-100" // Light mode odd row
+                          ? "bg-gray-800"
+                          : "bg-gray-100"
                       } transition-all duration-300 ${
-                        darkMode ? "text-gray-400 cursor-pointer" : "hover:bg-gray-200 cursor-pointer"
+                        darkMode
+                          ? "text-gray-400 cursor-pointer"
+                          : "hover:bg-gray-200 cursor-pointer"
                       } hover:scale-105`}
                     >
                       <th className="text-emerald-700 font-bold">
@@ -133,7 +137,8 @@ const MyVolunteerNeedPosts = () => {
                       <td>
                         <img
                           className="w-12 h-12 rounded-full object-cover shadow-sm"
-                          src={post.thumbnail}
+                          src={post.thumbnail || notFound}
+                          onError={(e) => (e.target.src = notFound)}
                           alt="thumbnail"
                         />
                       </td>

@@ -2,26 +2,25 @@ import React from "react";
 import { useTheme } from "../hooks/ThemeProvider ";
 
 const reviews = [
-
   {
-    reviewer_name: "Sofia Rahman",
-    reviewer_photo: "https://i.ibb.co/TRCV3Gv/download.png",
+    reviewer_name: "Abdur Rahman",
+    reviewer_photo: "https://i.ibb.co.com/3SxVvxz/11.jpg",
     review:
       "Volunteering with this program was an incredible experience. I learned a lot and felt valued throughout the process!",
     role: "Community Volunteer",
     rating: 5,
   },
   {
-    reviewer_name: "Imran Hossain",
-    reviewer_photo: "https://i.ibb.co/zxLK8cc/download.png",
+    reviewer_name: "Halima Khatun",
+    reviewer_photo: "https://i.ibb.co.com/kQ7vpnX/13.png",
     review:
       "The program was well-organized, but I wish there were more opportunities for hands-on work.",
     role: "Event Helper",
     rating: 4,
   },
   {
-    reviewer_name: "Ayesha Begum",
-    reviewer_photo: "https://i.ibb.co/TRCV3Gv/download.png",
+    reviewer_name: "Shohidullah",
+    reviewer_photo: "https://i.ibb.co.com/Nj7KzHC/12.jpg",
     review:
       "I loved participating in this initiative. It was a great way to give back to the community and meet amazing people!",
     role: "Team Leader",

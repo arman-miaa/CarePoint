@@ -109,9 +109,10 @@ const Navbar = () => {
       {/* User Profile Section */}
       {user?.email ? (
         <div className="navbar-end relative flex items-center gap-4">
+          
           {/* User Image */}
           <img
-            className="w-16 h-16 border-2 rounded-full cursor-pointer"
+            className="w-12 h-12 md:w-16 md:h-16 border-2 rounded-full cursor-pointer"
             src={user.photoURL || userIcon}
             alt="User Profile"
             onError={(e) => (e.target.src = userIcon)}
@@ -123,7 +124,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={handleDropdown}
-              className={`relative  py-2 px-4  bg-transparent isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold ${
+              className={`relative p-1  md:py-2 md:px-4  bg-transparent isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold ${
                 darkMode ? "text-white" : "text-black"
               }    rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
             >
@@ -200,7 +201,7 @@ const Navbar = () => {
               isActive ? "bg-emerald-700 rounded-xl text-white" : ""
             }
           >
-            <button className="relative py-2 px-4   isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+            <button className="relative p-1 md:py-2 md:px-4   isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
               Login
             </button>
           </NavLink>
@@ -211,7 +212,7 @@ const Navbar = () => {
               isActive ? "bg-emerald-700 rounded-xl text-white" : ""
             }
           >
-            <button className="relative py-2 px-4 isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold  rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+            <button className="relative p-1 md:py-2 md:px-4 isolation-auto z-10 border-2 border-emerald-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-emerald-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-semibold  rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
               Register
             </button>
           </NavLink>

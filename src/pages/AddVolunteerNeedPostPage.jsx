@@ -126,7 +126,7 @@ const AddVolunteerNeedPostPage = () => {
             name="description"
             placeholder="Enter description"
             // className="textarea textarea-bordered w-full resize-none"
-            className={`input w-full resize-none textarea  mt-2 border-emerald-700 bg-transparent input-bordered focus:outline-none focus:ring-2 ${
+            className={` textarea-bordered w-full resize-none textarea  mt-2 border-emerald-700 bg-transparent  focus:outline-none focus:ring-2 ${
               darkMode ? "text-gray-400" : "text-black"
             }`}
             required
