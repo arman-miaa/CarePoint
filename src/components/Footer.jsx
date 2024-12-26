@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/ThemeProvider ";
 
 const Footer = () => {
-      const { darkMode, toggleTheme } = useTheme();
+      const { darkMode } = useTheme();
   
   return (
     <div

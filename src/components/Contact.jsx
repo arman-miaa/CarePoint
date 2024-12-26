@@ -7,23 +7,11 @@ import Lottie from "lottie-react";
 
 const Contact = () => {
   const formRef = useRef();
-  // const lottieContainer = useRef();
+  
       const { darkMode } = useTheme();
   
 
-  // useEffect(() => {
-  //   Lottie.loadAnimation({
-  //     container: lottieContainer.current,
-  //     renderer: "svg",
-  //     loop: true,
-  //     autoplay: true,
-  //     animationData: submitLottieData,
-  //   });
 
-  //   return () => {
-  //     Lottie.destroy();
-  //   };
-  // }, []);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();

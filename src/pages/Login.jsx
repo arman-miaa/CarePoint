@@ -13,7 +13,7 @@ const Login = () => {
   const [error, setError] = useState("");
      const location = useLocation();
   const navigate = useNavigate();
-    const { darkMode, toggleTheme } = useTheme();
+    const { darkMode } = useTheme();
   
      const from = location.state?.from?.pathname || "/";
    

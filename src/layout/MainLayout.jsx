@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useTheme } from "../hooks/ThemeProvider ";
 
 const MainLayout = () => {
-    const { darkMode, toggleTheme } = useTheme();
+    const { darkMode } = useTheme();
   
     return (
       <div>
