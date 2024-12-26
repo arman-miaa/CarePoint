@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { axiosInstance } from "../hooks/useAxiosSecure";
@@ -6,6 +6,8 @@ import { useTheme } from "../hooks/ThemeProvider ";
 import notFound from '../assets/not-found.png'
 import Loading from "./Loading";
 import { toast } from "react-toastify";
+import { AuthContext } from "../hooks/AuthProvider";
+import { div } from "motion/react-client";
 
 const DetailsPage = () => {
   // const details = useLoaderData();
@@ -14,7 +16,11 @@ const DetailsPage = () => {
   const { id } = useParams();
 
   const { darkMode } = useTheme();
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
+  console.log(details.organizerEmail);
   
 
 
@@ -50,7 +56,7 @@ const DetailsPage = () => {
   return (
     <div>
       {loading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div
           className={`${
@@ -167,11 +173,19 @@ const DetailsPage = () => {
                     No more volunteers are needed for this opportunity.
                   </p>
                 ) : (
-                  <Link to={`/beAVolunteer/${_id}`}>
-                    <button className="inline-flex  outline-none w-full text-center mx-auto justify-center items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
-                      Be A Volunteer
-                    </button>
-                  </Link>
+                  <div>
+                    {user.email === details.organizerEmail ? (
+                      <p className="text-red-500 text-center py-2">
+                        You cannot volunteer for your own post.
+                      </p>
+                    ) : (
+                      <Link to={`/beAVolunteer/${_id}`}>
+                        <button className="inline-flex  outline-none w-full text-center mx-auto justify-center items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
+                          Be A Volunteer
+                        </button>
+                      </Link>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

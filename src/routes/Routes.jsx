@@ -26,8 +26,7 @@ const router = createBrowserRouter([
       {
         path: "AllvolunteerNeedposts",
         element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
-        loader: () =>
-          fetch("https://ph-assignment-11-server-brown.vercel.app/allPost"),
+        loader: () => fetch("http://localhost:5000/allPost"),
       },
       {
         path: "AddVolunteerNeedPostPage",

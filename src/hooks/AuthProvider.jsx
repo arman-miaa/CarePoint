@@ -37,27 +37,20 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currectUser) => {
       setUser(currectUser);
-     
+
       if (currectUser?.email) {
         const user = { email: currectUser?.email };
         axios
-          .post("https://ph-assignment-11-server-brown.vercel.app/jwt", user, {
+          .post("http://localhost:5000/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
-            
             setLoader(false);
           });
       } else {
         axios
-          .post(
-            "https://ph-assignment-11-server-brown.vercel.app/logout",
-            {},
-            { withCredentials: true }
-          )
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
           .then((res) => {
-                  
-           
             setLoader(false);
           });
       }
@@ -69,7 +62,6 @@ const AuthProvider = ({ children }) => {
 
   // logout suer
   const logOutUser = () => {
-    
     return signOut(auth);
   };
 

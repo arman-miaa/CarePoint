@@ -12,18 +12,16 @@ const VolunteerNeeds = () => {
   const [loading, setLoading] = useState(true);
   const { darkMode } = useTheme();
 
-
-
   useEffect(() => {
     axios
-      .get("https://ph-assignment-11-server-brown.vercel.app/volunteerPosts")
+      .get("http://localhost:5000/volunteerPosts")
       .then((res) => {
         setVolunteerPosts(res.data);
         setLoading(false);
       })
       .catch((error) => {
-              toast.warn("Data loading failed!");
-       
+        toast.warn("Data loading failed!");
+
         setLoading(false);
       });
   }, []);
