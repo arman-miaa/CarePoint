@@ -52,7 +52,7 @@ const VolunteerNeeds = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
             {volunteerPosts.map((volunteerPost) => (
               <div key={volunteerPost._id}>
                 <div className="card h-full card-compact bg-base-200  shadow-xl">
