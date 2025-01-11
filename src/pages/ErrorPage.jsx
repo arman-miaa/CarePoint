@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import errorImg from '../../src/assets/error.png'
+import { FaHome } from "react-icons/fa";
 
 const ErrorPage = () => {
     return (
@@ -7,13 +9,11 @@ const ErrorPage = () => {
         <Helmet>
           <title>ERROR Page || CarePoint</title>
         </Helmet>
-        <h1 className="text-gray-400 md:text-3xl font-bold">
-          Sorry! Page Not Found
-        </h1>
+        <img src={errorImg} alt="" />
         <p className="text-gray-400 mt-2 md:text-3xl">
-          Go bace to{" "}
-          <Link to="/" className="text-red-400 underline ">
-            Home
+         
+          <Link to="/" className=" ">
+            <button className="btn bg-emerald-700 text-xl hover:bg-emerald-800 text-white">Back to Home <FaHome></FaHome> </button>
           </Link>
         </p>
       </div>
