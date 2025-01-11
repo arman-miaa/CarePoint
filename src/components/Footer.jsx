@@ -31,10 +31,10 @@ const Footer = () => {
                 <a href="/#banner">Home</a>
               </li>
               <li className="hover:underline hover:text-emerald-700">
-                <Link>About Us</Link>
+                <Link to="/AllvolunteerNeedposts">All Posts</Link>
               </li>
               <li className="hover:underline hover:text-emerald-700">
-                <Link to="/AllvolunteerNeedposts">All Posts</Link>
+                <Link to='/ourBlogs'>Our Blogs</Link>
               </li>
               <li className="hover:underline hover:text-emerald-700">
                 <Link to="/signUp">Regisger</Link>
