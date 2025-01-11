@@ -63,7 +63,7 @@ const OurMission = () => {
                   </h3>
                 </div>
                 <p
-                  className={`label-text font-semibold ${
+                  className={`label-text font-semibold  ${
                     darkMode ? "text-gray-400" : "text-black"
                   }`}
                 >
@@ -121,7 +121,7 @@ const OurMission = () => {
                   </h3>
                 </div>
                 <p
-                  className={`label-text font-semibold ${
+                  className={`label-text font-semibold  ${
                     darkMode ? "text-gray-400" : "text-black"
                   }`}
                 >

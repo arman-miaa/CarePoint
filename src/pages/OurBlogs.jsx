@@ -3,6 +3,7 @@ import { useTheme } from "../hooks/ThemeProvider ";
 import blog1 from '../../src/assets/blog1.webp';
 import blog2 from '../../src/assets/blog2.webp';
 import blog3 from '../../src/assets/blog3.jpg';
+import { MdOutlineDateRange } from "react-icons/md";
 
 const OurBlogs = () => {
   const { darkMode } = useTheme();
@@ -16,7 +17,7 @@ const OurBlogs = () => {
        "This blog post focuses on efforts to help communities affected by flooding, providing them with resources, aid, and support for rebuilding their homes and livelihoods.",
      imageUrl: blog1, 
      category: "Disaster Relief",
-     date: "2025-01-11",
+     date: "2025-01-08",
    },
    {
      id: 2,
@@ -25,7 +26,7 @@ const OurBlogs = () => {
        "This blog post highlights the importance of supporting women in the construction industry and how they are breaking barriers and building careers. Read about initiatives to empower women in this traditionally male-dominated field.",
      imageUrl: blog2,
      category: "Women Empowerment",
-     date: "2025-01-11",
+     date: "2024-12-25",
    },
    {
      id: 3,
@@ -34,7 +35,7 @@ const OurBlogs = () => {
        "In this blog post, we will discuss how to focus on the education of poor children, the importance of basic education for them, and the need for societal support.",
      imageUrl: blog3,
      category: "Education",
-     date: "2025-01-11",
+     date: "2024-12-20",
    },
  ];
 
@@ -53,8 +54,8 @@ const OurBlogs = () => {
         {/* Blog Cards */}
         <div className="grid grid-cols-1  gap-8">
           {blogs.map((blog) => (
-            <div className="flex flex-col md:flex-row">
-              <div className="flex-1 border-2">
+            <div key={blog.id} className="flex flex-col md:flex-row">
+              <div className="flex-1 ">
                 <img
                   src={blog.imageUrl}
                   alt={blog.title}
@@ -62,8 +63,6 @@ const OurBlogs = () => {
                 />
               </div>
               <div className="flex-1">
-                
-
                 <div className="p-6 ">
                   <h3 className="text-xl font-semibold text-emerald-700 mb-3">
                     {blog.title}
@@ -75,9 +74,18 @@ const OurBlogs = () => {
                   >
                     {blog.description}
                   </p>
-                  <div>
-                    <h3>Category: {blog.category}</h3>
-                    <p>Date: {blog.date}</p>
+                  <div
+                    className={`flex items-center gap-4 mt-4 ${
+                      darkMode ? "text-gray-400" : "text-black"
+                    }`}
+                  >
+                    <h3>
+                      <span className="text-lg font-semibold">Category: </span>{" "}
+                      {blog.category}
+                    </h3>
+                    <p className="flex gap-1  items-center">
+                      <MdOutlineDateRange  /> {blog.date}
+                    </p>
                   </div>
                 </div>
               </div>

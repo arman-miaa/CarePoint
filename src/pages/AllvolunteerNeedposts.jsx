@@ -111,7 +111,7 @@ const AllvolunteerNeedposts = () => {
                       <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
                         {volunteerPost.title}
                       </h2>
-                      <p className="font-semibold md:text-lg">
+                      {/* <p className="font-semibold md:text-lg">
                         <span className="font-semibold md:text-xl">
                           Category:
                         </span>{" "}
@@ -134,6 +134,12 @@ const AllvolunteerNeedposts = () => {
                             volunteerPost.volunteers
                           )}
                         </span>
+                      </p> */}
+                      <p className="text-lg xl:hidden">
+                        {volunteerPost.description.slice(0, 100)}...
+                      </p>
+                      <p className="text-lg hidden xl:flex">
+                        {volunteerPost.description.slice(0, 200)}...
                       </p>
 
                       <p className="font-semibold md:text-lg">

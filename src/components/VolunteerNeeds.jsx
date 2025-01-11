@@ -11,6 +11,7 @@ const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { darkMode } = useTheme();
+  // console.log(volunteerPosts);
 
   useEffect(() => {
     axios
@@ -73,7 +74,14 @@ const VolunteerNeeds = () => {
                     <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
                       {volunteerPost.title}
                     </h2>
-                    <p className="font-semibold md:text-lg">
+                    <p className="text-lg xl:hidden">
+                      {volunteerPost.description.slice(0, 100)}...
+                    </p>
+                    <p className="text-lg hidden xl:flex">
+                      {volunteerPost.description.slice(0, 110)}...
+                    </p>
+
+                    {/* <p className="font-semibold md:text-lg">
                       <span className="font-semibold md:text-xl">
                         Category:{" "}
                       </span>
@@ -84,7 +92,7 @@ const VolunteerNeeds = () => {
                         Location:{" "}
                       </span>
                       {volunteerPost.location}
-                    </p>
+                    </p> */}
                     <p className="font-semibold md:text-lg">
                       <span className="font-semibold md:text-xl">
                         Deadline:{" "}
