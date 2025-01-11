@@ -17,11 +17,11 @@ const AllvolunteerNeedposts = () => {
   const [layout, setLayout] = useState("card");
   const { darkMode } = useTheme();
 
-  useEffect(() => {
-    if (volunteerPosts) {
-      setLoader(false);
-    }
-  }, [volunteerPosts]);
+    useEffect(() => {
+      if (volunteerPosts) {
+        setLoader(false);
+      }
+    }, [volunteerPosts]);
 
   useEffect(() => {
     axios

@@ -13,6 +13,7 @@ import ErrorPage from "../pages/ErrorPage";
 
 import UpdatePage from "../pages/UpdatePage";
 import { axiosInstance } from "../hooks/useAxiosSecure";
+import OurBlogs from "../pages/OurBlogs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
           fetch("https://ph-assignment-11-server-brown.vercel.app/allPost"),
       },
       {
+        path: "ourBlogs",
+        element: <OurBlogs></OurBlogs>,
+      },
+      {
         path: "AddVolunteerNeedPostPage",
         element: (
           <Private>
@@ -39,11 +44,12 @@ const router = createBrowserRouter([
       },
       {
         path: "detailsPage/:id",
-        element: (
-          <Private>
-            <DetailsPage />
-          </Private>
-        ),
+        // element: (
+        //   <Private>
+        //     <DetailsPage />
+        //   </Private>
+        // ),
+        element: <DetailsPage/>,
         loader: async ({ params }) => {
           try {
             const response = await axiosInstance.get(

@@ -172,7 +172,7 @@ const DetailsPage = () => {
                   </p>
                 ) : (
                   <div>
-                    {user.email === details.organizerEmail ? (
+                    {user?.email === details.organizerEmail ? (
                       <p className="text-red-500 text-center py-2">
                         You cannot volunteer for your own post.
                       </p>
