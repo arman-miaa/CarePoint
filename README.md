@@ -13,6 +13,7 @@ The purpose of this project is to deliver a highly efficient and intuitive front
 ## 🌐 Live URL  
 
  
+- 🌍 **Netlify Live Link**: 👉 [https://carepoint36.netlify.app](https://carepoint36.netlify.app)  
 - 🌍 **Firebase Live Link**: 👉 [https://carepoint-b2a32.web.app](https://carepoint-b2a32.web.app)  
 
 ---

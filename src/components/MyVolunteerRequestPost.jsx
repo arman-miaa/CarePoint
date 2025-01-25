@@ -53,7 +53,7 @@ const MyVolunteerRequestPost = () => {
           })
           .then((res) => {
            
-            if (res.data.deletedCount > 0) {
+            if (res.data.result.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",

@@ -27,8 +27,7 @@ const router = createBrowserRouter([
       {
         path: "AllvolunteerNeedposts",
         element: <AllvolunteerNeedposts></AllvolunteerNeedposts>,
-        loader: () =>
-          fetch("https://ph-assignment-11-server-brown.vercel.app/allPost"),
+        loader: () => fetch("https://carepoint-server.vercel.app/allPost"),
       },
       {
         path: "ourBlogs",
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
         //     <DetailsPage />
         //   </Private>
         // ),
-        element: <DetailsPage/>,
+        element: <DetailsPage />,
         loader: async ({ params }) => {
           try {
             const response = await axiosInstance.get(

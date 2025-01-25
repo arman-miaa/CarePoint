@@ -5,7 +5,7 @@ import { AuthContext } from "./AuthProvider";
 import { toast } from "react-toastify";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://ph-assignment-11-server-brown.vercel.app",
+  baseURL: "https://carepoint-server.vercel.app",
   withCredentials: true,
 });
 

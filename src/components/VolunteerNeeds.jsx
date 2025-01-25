@@ -11,11 +11,10 @@ const VolunteerNeeds = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { darkMode } = useTheme();
-  // console.log(volunteerPosts);
 
   useEffect(() => {
     axios
-      .get("https://ph-assignment-11-server-brown.vercel.app/volunteerPosts")
+      .get("https://carepoint-server.vercel.app/volunteerPosts")
       .then((res) => {
         setVolunteerPosts(res.data);
         setLoading(false);
@@ -56,7 +55,7 @@ const VolunteerNeeds = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
             {volunteerPosts.map((volunteerPost) => (
               <div key={volunteerPost._id}>
-                <div className="card h-full card-compact bg-base-200  shadow-xl">
+                <div className="card h-full mx-4 md:mx-0 card-compact bg-base-200  shadow-xl">
                   <figure>
                     <img
                       className="w-full h-[210px] lg:h-56 object-cover rounded-xl"

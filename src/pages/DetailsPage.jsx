@@ -1,39 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
-import notFound from '../assets/not-found.png'
+import notFound from "../assets/not-found.png";
 import Loading from "./Loading";
 import { toast } from "react-toastify";
 import { AuthContext } from "../hooks/AuthProvider";
 
 const DetailsPage = () => {
-  // const details = useLoaderData();
-  const [details, setDetails] = useState('');
-  
+  const [details, setDetails] = useState("");
   const { id } = useParams();
-
   const { darkMode } = useTheme();
   const [loading, setLoading] = useState(true);
-  
   const { user } = useContext(AuthContext);
-
-  
-
 
   useEffect(() => {
     axiosInstance
-      .get(`/volunteerPosts/${id}`, {
-        
-      })
+      .get(`/volunteerPosts/${id}`)
       .then((res) => {
         setDetails(res.data);
         setLoading(false);
       })
       .catch((error) => {
-               toast.warn("Data loading failed!");
-        
+        toast.warn("Data loading failed!");
         setLoading(false);
       });
   }, [id]);
@@ -50,6 +40,11 @@ const DetailsPage = () => {
     organizerName,
     organizerEmail,
   } = details;
+
+  // Check if the deadline has passed
+  const today = new Date();
+  const deadlineDate = new Date(postDeadline);
+  const isDeadlineOver = deadlineDate < today;
 
   return (
     <div>
@@ -96,7 +91,6 @@ const DetailsPage = () => {
             </figure>
             <div className="flex-1">
               <h2 className="card-title text-emerald-700 font-bold md:text-2xl">
-                {" "}
                 {title}
               </h2>
               <p
@@ -104,30 +98,35 @@ const DetailsPage = () => {
                   darkMode ? "text-gray-400" : "text-black"
                 }`}
               >
-                <span
-                  className={` md:w-1/2 mx-4 md:mx-auto mt-2  ${
-                    darkMode ? "text-gray-400" : "text-black"
-                  }`}
-                ></span>{" "}
                 {description}
               </p>
               <p
-                className={`  mt-2 ${
-                  darkMode ? "text-gray-400" : "text-black"
-                }`}
+                className={`mt-2 ${darkMode ? "text-gray-400" : "text-black"}`}
               >
                 <span className="text-[17px] font-bold">Category:</span>{" "}
                 {category}
               </p>
-              <p className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
+              <p className={`${darkMode ? "text-gray-400" : "text-black"}`}>
                 <span className="text-[17px] font-bold">Location:</span>{" "}
                 {location}
               </p>
-              <p className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
-                <span className="text-[17px] font-bold">Deadline:</span>{" "}
-                {postDeadline}
+              <p
+                className={` ${
+                  darkMode
+                    ? "text-gray-400"
+                    : isDeadlineOver
+                    ? "text-red-500"
+                    : "text-black"
+                }`}
+              >
+                <span className="font-semibold md:text-xl">Deadline: </span>
+                {deadlineDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                })}
               </p>
-              <p className={`  ${darkMode ? "text-gray-400" : "text-black"}`}>
+              <p className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
                 <span className="text-[17px] font-bold">
                   Volunteer Needed:{" "}
                 </span>
@@ -166,9 +165,11 @@ const DetailsPage = () => {
               </p>
 
               <div className="w-full border-2 mt-4">
-                {volunteers === 0 || volunteers < 0 ? (
+                {isDeadlineOver || volunteers === 0 || volunteers < 0 ? (
                   <p className="text-red-500 text-center py-2">
-                    No more volunteers are needed for this opportunity.
+                    {isDeadlineOver
+                      ? "Deadline is over."
+                      : "No more volunteers are needed for this opportunity."}
                   </p>
                 ) : (
                   <div>
@@ -178,8 +179,13 @@ const DetailsPage = () => {
                       </p>
                     ) : (
                       <Link to={`/beAVolunteer/${_id}`}>
-                        <button className="inline-flex  outline-none w-full text-center mx-auto justify-center items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105">
-                          Be A Volunteer
+                        <button
+                          className="inline-flex  outline-none w-full text-center mx-auto justify-center items-center px-4 py-2 bg-emerald-600 transition-all duration-300 ease-in-out hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm hover:scale-105"
+                          disabled={isDeadlineOver}
+                        >
+                          {isDeadlineOver
+                            ? "Deadline is Over"
+                            : "Be A Volunteer"}
                         </button>
                       </Link>
                     )}

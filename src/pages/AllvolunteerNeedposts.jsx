@@ -17,20 +17,17 @@ const AllvolunteerNeedposts = () => {
   const [layout, setLayout] = useState("card");
   const { darkMode } = useTheme();
 
-    useEffect(() => {
-      if (volunteerPosts) {
-        setLoader(false);
-      }
-    }, [volunteerPosts]);
+  useEffect(() => {
+    if (volunteerPosts) {
+      setLoader(false);
+    }
+  }, [volunteerPosts]);
 
   useEffect(() => {
     axios
-      .get(
-        `https://ph-assignment-11-server-brown.vercel.app/allPost?search=${search}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`https://carepoint-server.vercel.app/allPost?search=${search}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setVolunteerPosts(res.data);
       })
@@ -98,7 +95,7 @@ const AllvolunteerNeedposts = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {volunteerPosts.map((volunteerPost) => (
                 <div key={volunteerPost._id}>
-                  <div className="card h-full card-compact bg-white shadow-lg rounded-lg overflow-hidden">
+                  <div className="card h-full mx-4 md:mx-0 card-compact bg-white shadow-lg rounded-lg overflow-hidden">
                     <figure>
                       <img
                         src={volunteerPost.thumbnail || notFound}

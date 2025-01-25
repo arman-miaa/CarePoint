@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
       if (currectUser?.email) {
         const user = { email: currectUser?.email };
         axios
-          .post("https://ph-assignment-11-server-brown.vercel.app/jwt", user, {
+          .post("https://carepoint-server.vercel.app/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "https://ph-assignment-11-server-brown.vercel.app/logout",
+            "https://carepoint-server.vercel.app/logout",
             {},
             { withCredentials: true }
           )
