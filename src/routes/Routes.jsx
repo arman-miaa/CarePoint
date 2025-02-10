@@ -43,11 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "detailsPage/:id",
-        // element: (
-        //   <Private>
-        //     <DetailsPage />
-        //   </Private>
-        // ),
+      
         element: <DetailsPage />,
         loader: async ({ params }) => {
           try {
