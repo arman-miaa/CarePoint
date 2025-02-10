@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { toast } from "react-toastify";
+
 import { AuthContext } from "../hooks/AuthProvider";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import { axiosInstance } from "../hooks/useAxiosSecure";
