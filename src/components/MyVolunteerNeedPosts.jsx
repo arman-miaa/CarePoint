@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../hooks/AuthProvider";
-// import axios from "axios";
+
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../pages/Loading";
 import useAxiosSequre from "../hooks/useAxiosSecure";
 import { useTheme } from "../hooks/ThemeProvider ";
-// import { NavLink, Outlet, useLocation } from "react-router-dom";
+
 import notFound from "../assets/not-found.png";
 import { toast } from "react-toastify";
 
