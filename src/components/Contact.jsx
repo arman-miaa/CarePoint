@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import Swal from "sweetalert2";
-// import Lottie from "lottie-web"; 
+
 import submitLottieData from "../assets/lottie/submit.json";
 import { useTheme } from "../hooks/ThemeProvider ";
 import Lottie from "lottie-react";
